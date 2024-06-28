@@ -1,0 +1,6 @@
+Dependencies for Project 'CH57x', Target 'Cortex-M': (DO NOT MODIFY !)
+F (.\Abstract.txt)(0x00000000)()
+F (.\FlashPrg.c)(0x5BF7764E)(--c99 -c --cpu Cortex-M0 --li -g -O0 --apcs=interwork --apcs /ropi/rwpi -IF:\日常记录卡\按芯片记录\CH579\芯片硬件开发包\CH57x_190820\Files\CMSIS\Flash\CH57x\RTE-IF:\keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM0\Include-IF:\keil\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DARMCM0-o .\objects\flashprg.o --omf_browse .\objects\flashprg.crf --depend .\objects\flashprg.d)
+I (..\FlashOS.H)(0x55764946)
+F (.\FlashDev.c)(0x5BF7764E)(--c99 -c --cpu Cortex-M0 --li -g -O0 --apcs=interwork --apcs /ropi/rwpi -IF:\日常记录卡\按芯片记录\CH579\芯片硬件开发包\CH57x_190820\Files\CMSIS\Flash\CH57x\RTE-IF:\keil\ARM\PACK\ARM\CMSIS\4.5.0\Device\ARM\ARMCM0\Include-IF:\keil\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DARMCM0-o .\objects\flashdev.o --omf_browse .\objects\flashdev.crf --depend .\objects\flashdev.d)
+I (..\FlashOS.H)(0x55764946)

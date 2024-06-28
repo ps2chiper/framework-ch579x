@@ -1,0 +1,5263 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<device schemaVersion="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD.xsd" >
+  <vendor>WCH Ltd.</vendor>                                       <!-- device vendor name -->
+  <vendorID>WCH</vendorID>                                        <!-- device vendor short name -->
+  <name>CH579SFR</name>                                        <!-- name of part-->
+  <series>CH57x</series>                                         <!-- device series the device belongs to -->
+  <version>1.0</version>                                          <!-- version of this description, adding CMSIS-SVD 1.1 tags -->
+  <description>WCH wireless MCU CH57x Family Support, Drivers</description>
+  <cpu>                                                           <!-- details about the cpu embedded in the device -->
+    <name>CM0</name>
+    <revision>r0p0</revision>
+    <endian>little</endian>
+    <mpuPresent>false</mpuPresent>
+    <fpuPresent>false</fpuPresent>
+    <nvicPrioBits>2</nvicPrioBits>
+    <vendorSystickConfig>false</vendorSystickConfig>
+  </cpu>
+  <addressUnitBits>8</addressUnitBits>                            <!-- byte addressable memory -->
+  <width>32</width>                                               <!-- bus width is 32 bits -->
+  <!-- default settings implicitly inherited by subsequent sections -->
+  <size>32</size>                                                 <!-- this is the default size (number of bits) of all peripherals
+                                                                       and register that do not define "size" themselves -->
+  <resetValue>0x00000000</resetValue>                             <!-- by default all bits of the registers are initialized to 0 on reset -->
+  <resetMask>0xFFFFFFFF</resetMask>                               <!-- by default all 32Bits of the registers are used -->
+
+  <peripherals>
+    <peripheral>
+      <name>SYS</name>
+      <description>System Control Register</description>
+      <groupName>SystemControl</groupName>
+      <baseAddress>0x40001000</baseAddress>
+      <addressBlock>
+        <offset>0x00</offset>
+        <size>0x400</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <interrupt>
+        <name>GPIO</name>
+		<description>GPIO_IRQHandler</description>
+        <value>1</value>
+      </interrupt>
+	  <interrupt>
+		<name>SLAVE</name>
+		<description>SLAVE_IRQHandler</description>
+		<value>2</value>
+	  </interrupt>
+	   <interrupt>
+		<name>BB</name>
+		<description>BB_IRQHandler</description>
+		<value>4</value>
+	  </interrupt>
+	   <interrupt>
+		<name>LLE</name>
+		<description>LLE_IRQHandler</description>
+		<value>5</value>
+	  </interrupt>
+	  <interrupt>
+		<name>RTC</name>
+		<description>RTC_IRQHandler</description>
+		<value>12</value>
+	  </interrupt>
+	  <interrupt>
+		<name>ADC</name>
+		<description>ADC_IRQHandler</description>
+		<value>13</value>
+	  </interrupt>
+	  <interrupt>
+		<name>WDOG_BAT</name>
+		<description>WDT_IRQHandler</description>
+		<value>19</value>
+	  </interrupt>
+      <registers>
+		<register>
+			<name>R16_CLK_SYS_CFG</name>
+			<description>RWA, system clock configuration, SAM</description>
+			<addressOffset>0x08</addressOffset>
+			<size>16</size>
+			<fields>
+				<field>
+					<name>RB_CLK_PLL_DIV</name>
+					<description>RWA, output clock divider from PLL or CK32M</description>
+					<bitRange>[4:0]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_CLK_SYS_MOD</name>
+					<description>RWA, system clock source mode: 00=divided from 32MHz, 01=divided from PLL-480MHz, 10=directly from 32MHz, 11=directly from 32KHz</description>
+					<bitRange>[7:6]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_CLK_OSC32M_XT</name>
+					<description>RWA, 32MHz clock source selection: 0=internal 32MHz oscillator, 1=external 32MHz oscillator</description>
+					<bitRange>[9:9]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_XO_DI</name>
+					<description>RO, X32MO input status sample value</description>
+					<bitRange>[15:15]</bitRange>
+					<access>read-only</access>
+				</field>
+			</fields>
+		</register>
+        <register>
+			<name>R8_HFCK_PWR_CTRL</name>
+			<description>RWA, high frequency clock module power control, SAM</description>
+			<addressOffset>0x0A</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_CLK_XT32M_PON</name>
+					<description>RWA, external 32MHz oscillator power control: 0=power down, 1-power on</description>
+					<bitRange>[2:2]</bitRange>
+				</field>
+				<field>
+					<name>RB_CLK_INT32M_PON</name>
+					<description>RWA, internal 32MHz oscillator power control: 0=power down, 1-power on</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+				<field>
+					<name>RB_CLK_PLL_PON</name>
+					<description>RWA, PLL power control: 0=power down, 1-power on</description>
+					<bitRange>[4:4]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_SLP_CLK_OFF0</name>
+			<description>RWA, sleep clock off control byte 0, SAM</description>
+			<addressOffset>0x0C</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_SLP_CLK_TMR0</name>
+					<description>RWA, close TMR0 clock</description>
+					<bitRange>[0:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_TMR1</name>
+					<description>RWA, close TMR1 clock</description>
+					<bitRange>[1:1]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_TMR2</name>
+					<description>RWA, close TMR2 clock</description>
+					<bitRange>[2:2]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_TMR3</name>
+					<description>RWA, close TMR3 clock</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_UART0</name>
+					<description>RWA, close UART0 clock</description>
+					<bitRange>[4:4]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_UART1</name>
+					<description>RWA, close UART1 clock</description>
+					<bitRange>[5:5]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_UART2</name>
+					<description>RWA, close UART2 clock</description>
+					<bitRange>[6:6]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_UART3</name>
+					<description>RWA, close UART3 clock</description>
+					<bitRange>[7:7]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_SLP_CLK_OFF1</name>
+			<description>RWA, sleep clock off control byte 1, SAM</description>
+			<addressOffset>0x0D</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_SLP_CLK_SPI0</name>
+					<description>RWA, close SPI0 clock</description>
+					<bitRange>[0:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_SPI1</name>
+					<description>RWA, close SPI1 clock</description>
+					<bitRange>[1:1]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_PWMX</name>
+					<description>RWA, close PWMx clock</description>
+					<bitRange>[2:2]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_LCD</name>
+					<description>RWA, close LCD clock</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_USB</name>
+					<description>RWA, close USB clock</description>
+					<bitRange>[4:4]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_ETH</name>
+					<description>RWA, close ETH clock</description>
+					<bitRange>[5:5]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_LED</name>
+					<description>RWA, close LED clock</description>
+					<bitRange>[6:6]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_BLE</name>
+					<description>RWA, close BLE clock</description>
+					<bitRange>[7:7]</bitRange>
+				</field>
+			</fields>	
+		</register>
+		<register>
+			<name>R8_SLP_WAKE_CTRL</name>
+			<description>RWA, wake control, SAM</description>
+			<addressOffset>0x0E</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_SLP_USB_WAKE</name>
+					<description>RWA, enable USB waking</description>
+					<bitRange>[0:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_ETH_WAKE</name>
+					<description>RWA, enable ETH waking</description>
+					<bitRange>[1:1]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_RTC_WAKE</name>
+					<description>RWA, enable RTC waking</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_GPIO_WAKE</name>
+					<description>RWA, enable GPIO waking</description>
+					<bitRange>[4:4]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_BAT_WAKE</name>
+					<description>RWA, enable BAT waking</description>
+					<bitRange>[5:5]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_SLP_POWER_CTRL</name>
+			<description>RWA, peripherals power down control, SAM</description>
+			<addressOffset>0x0F</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_SLP_ETH_PWR_DN</name>
+					<description>RWA, enable ETH PHY power down</description>
+					<bitRange>[1:1]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_ROM_PWR_DN</name>
+					<description>RWA, enable Flash ROM power down during halt</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_RAMX</name>
+					<description>RWA, close main SRAM clock</description>
+					<bitRange>[4:4]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLP_CLK_RAM2K</name>
+					<description>RWA, close retention 2KB SRAM clock</description>
+					<bitRange>[5:5]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R16_PIN_ALTERNATE</name>
+			<description>RW, function pin alternate configuration</description>
+			<addressOffset>0x18</addressOffset>
+			<size>16</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_PIN_TMR0</name>
+					<description>RW, TMR0 alternate pin enable: 0=TMR0/PWM0/CAP0 on PA[3], 1=TMR0_/PWM0_/CAP0_ on PB[19]</description>
+					<bitRange>[0:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_TMR1</name>
+					<description>RW, TMR1 alternate pin enable: 0=TMR1/PWM1/CAP1 on PA[10], 1=TMR1_/PWM1_/CAP1_ on PB[10]</description>
+					<bitRange>[1:1]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_TMR2</name>
+					<description>RW, TMR2 alternate pin enable: 0=TMR2/PWM2/CAP2 on PA[11], 1=TMR2_/PWM2_/CAP2_ on PB[11]</description>
+					<bitRange>[2:2]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_TMR3</name>
+					<description>RW, TMR3 alternate pin enable: 0=TMR3/PWM3/CAP3 on PA[2], 1=TMR3_/PWM3_/CAP3_ on PB[18]</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_UART0</name>
+					<description>RW, RXD0/TXD0 alternate pin enable: 0=RXD0/TXD0 on PB[4]/PB[7], 1=RXD0_/TXD0_ on PA[15]/PA[14]</description>
+					<bitRange>[4:4]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_UART1</name>
+					<description>RW, RXD1/TXD1 alternate pin enable: 0=RXD1/TXD1 on PA[8]/PA[9], 1=RXD1_/TXD1_ on PB[8]/PB[9]</description>
+					<bitRange>[5:5]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_UART2</name>
+					<description>RW, RXD2/TXD2 alternate pin enable: 0=RXD2/TXD2 on PA[6]/PA[7], 1=RXD2_/TXD2_ on PB[22]/PB[23]</description>
+					<bitRange>[6:6]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_UART3</name>
+					<description>RW, RXD3/TXD3 alternate pin enable: 0=RXD3/TXD3 on PA[4]/PA[5], 1=RXD3_/TXD3_ on PB[20]/PB[21]</description>
+					<bitRange>[7:7]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_SPI0</name>
+					<description>RW, SCS/SCK0/MOSI/MISO alternate pin enable: 0=SCS/SCK0/MOSI/MISO on PA[12]/PA[13]/PA[14]/PA[15], 1=SCS_/SCK0_/MOSI_/MISO_ on PB[12]/PB[13]/PB[14]/PB[15]</description>
+					<bitRange>[8:8]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R16_PIN_ANALOG_IE</name>
+			<description>RW, analog pin enable and digital input disable</description>
+			<addressOffset>0x1A</addressOffset>
+			<size>16</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_PIN_SEG0_3_IE</name>
+					<description>RW, LCD segment 0~3 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[0:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_SEG4_7_IE</name>
+					<description>RW, LCD segment 4~7 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[1:1]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_SEG8_11_IE</name>
+					<description>RW, LCD segment 8~11 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[2:2]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_SEG12_15_IE</name>
+					<description>RW, LCD segment 12~15 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_SEG16_19_IE</name>
+					<description>RW, LCD segment 16~19 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[4:4]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_SEG20_23_IE</name>
+					<description>RW, LCD segment 20~23 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[5:5]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_ETH_IE</name>
+					<description>RW, ETH analog I/O enable and digital input disable: 0=analog I/O disable and digital input enable, 1=analog I/O enable and digital input disable</description>
+					<bitRange>[6:6]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_USB_IE</name>
+					<description>RW, USB analog I/O enable: 0=analog I/O disable, 1=analog I/O enable</description>
+					<bitRange>[7:7]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_ADC8_9_IE</name>
+					<description>RW, ADC/TouchKey channel 9/8 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[8:8]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_ADC6_7_IE</name>
+					<description>RW, ADC/TouchKey channel 7/6 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[9:9]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_ADC0_1_IE</name>
+					<description>RW, ADC/TouchKey channel 0/1 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[10:10]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_ADC10_11_IE</name>
+					<description>RW, ADC/TouchKey channel 10/11 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[11:11]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_ADC12_13_IE</name>
+					<description>RW, ADC/TouchKey channel 12/13 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[12:12]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_XT32K_IE</name>
+					<description>RW, external 32KHz oscillator digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[13:13]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_ADC2_3_IE</name>
+					<description>RW, ADC/TouchKey channel 2/3 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[14:14]</bitRange>
+				</field>
+				<field>
+					<name>RB_PIN_ADC4_5_IE</name>
+					<description>RW, ADC/TouchKey channel 4/5 digital input disable: 0=digital input enable, 1=digital input disable</description>
+					<bitRange>[15:15]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_SLV_CONFIG</name>
+			<description>RW, parallel slave configuration</description>
+			<addressOffset>0x1C</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_SLV_ENABLE</name>
+					<description>RW, parallel slave enable</description>
+					<bitRange>[0:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLV_IE_CMD</name>
+					<description>RW, enable interrupt for slave writing command event</description>
+					<bitRange>[1:1]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLV_IE_WR</name>
+					<description>RW, enable interrupt for slave writing event</description>
+					<bitRange>[2:2]</bitRange>
+				</field>
+				<field>
+					<name>RB_SLV_IE_RD</name>
+					<description>RW, enable interrupt for slave reading event</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+				<field>
+					<name>RB_IF_SLV_CMD</name>
+					<description>RO, parallel slave command synchronous flag</description>
+					<bitRange>[5:5]</bitRange>
+					<access>read-only</access>
+				</field>
+				<field>
+					<name>RB_IF_SLV_WR</name>
+					<description>RW1, interrupt flag of parallel slave writing event</description>
+					<bitRange>[6:6]</bitRange>
+				</field>
+				<field>
+					<name>RB_IF_SLV_RD</name>
+					<description>RW1, interrupt flag of parallel slave reading event</description>
+					<bitRange>[7:7]</bitRange>
+				</field>
+			</fields>
+		</register>
+		
+		<register>
+			<name>R16_POWER_PLAN</name>
+			<description>RWA, power plan before sleep instruction, SAM</description>
+			<addressOffset>0x20</addressOffset>
+			<size>16</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_PWR_RAM2K</name>
+					<description>RWA, power for retention 2KB SRAM</description>
+					<bitRange>[1:1]</bitRange>
+				</field>
+				<field>
+					<name>RB_PWR_CORE</name>
+					<description>RWA, power retention for core and base peripherals</description>
+					<bitRange>[2:2]</bitRange>
+				</field>
+				<field>
+					<name>RB_PWR_EXTEND</name>
+					<description>RWA, power retention for USB and BLE</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+				<field>
+					<name>RB_PWR_RAM14K</name>
+					<description>RWA, power for main SRAM</description>
+					<bitRange>[4:4]</bitRange>
+				</field>
+				<field>
+					<name>RB_PWR_SYS_EN</name>
+					<description>RWA, power for system</description>
+					<bitRange>[7:7]</bitRange>
+				</field>
+				<field>
+					<name>RB_PWR_MUST_1</name>
+					<description>RWA, must write 1 </description>
+					<bitRange>[8:8]</bitRange>
+					<access>read-only</access>
+				</field>
+				<field>
+					<name>RB_PWR_DCDC_EN</name>
+					<description>RWA, DC/DC converter enable: 0=DC/DC disable and bypass, 1=DC/DC enable</description>
+					<bitRange>[9:9]</bitRange>
+				</field>
+				<field>
+					<name>RB_PWR_DCDC_PRE</name>
+					<description>RWA, DC/DC converter pre-enable</description>
+					<bitRange>[10:10]</bitRange>
+				</field>
+				<field>
+					<name>RB_PWR_MUST_0010</name>
+					<description>RWA, must write 0010</description>
+					<bitRange>[14:11]</bitRange>
+					<access>read-only</access>
+				</field>
+				<field>
+					<name>RB_PWR_PLAN_EN</name>
+					<description>RWA/WZ, power plan enable, auto clear after sleep executed</description>
+					<bitRange>[15:15]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_AUX_POWER_ADJ</name>
+			<description>RWA, aux power adjust control, SAM</description>
+			<addressOffset>0x22</addressOffset>
+			<size>8</size>
+			<fields>
+				<field>
+					<name>RB_ULPLDO_ADJ</name>
+					<description>RWA, Ultra-Low-Power LDO voltage adjust</description>
+					<bitRange>[2:0]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>Reserved_1xx</name>
+					<description>Reserved_1xx</description>
+					<bitRange>[5:3]</bitRange>
+					<access>read-only</access>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_BAT_DET_CTRL</name>
+			<description>RWA, battery voltage detector control, SAM</description>
+			<addressOffset>0x24</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_BAT_DET_EN</name>
+					<description>RWA, battery voltage detector enable</description>
+					<bitRange>[0:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_BAT_LOWER_IE</name>
+					<description>RWA, interrupt enable for battery lower voltage</description>
+					<bitRange>[2:2]</bitRange>
+				</field>
+				<field>
+					<name>RB_BAT_LOW_IE</name>
+					<description>RWA, interrupt enable for battery low voltage</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_BAT_DET_CFG</name>
+			<description>RWA, battery voltage detector configuration, SAM</description>
+			<addressOffset>0x25</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_BAT_LOW_VTH</name>
+					<description>RWA, select threshold voltage of battery voltage low</description>
+					<bitRange>[1:0]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_BAT_STATUS</name>
+			<description>RO, battery status</description>
+			<addressOffset>0x26</addressOffset>
+			<size>8</size>
+			<access>read-only</access>
+			<fields>
+				<field>
+					<name>RB_BAT_STAT_LOWER</name>
+					<description>RO, battery lower voltage status, high action</description>
+					<bitRange>[0:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_BAT_STAT_LOW</name>
+					<description>RO, battery low voltage status, high action</description>
+					<bitRange>[1:1]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R16_INT32K_TUNE</name>
+			<description>RWA, internal 32KHz oscillator tune control, SAM</description>
+			<addressOffset>0x2C</addressOffset>
+			<size>16</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_INT32K_TUNE</name>
+					<description>RWA, internal 32KHz oscillator frequency tune</description>
+					<bitRange>[9:0]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_XT32K_TUNE</name>
+			<description>RWA, external 32KHz oscillator tune control, SAM</description>
+			<addressOffset>0x2E</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_XT32K_I_TUNE</name>
+					<description>RWA, external 32KHz oscillator current tune: 00=75% current, 01=standard current, 10=150% current, 11=200% current</description>
+					<bitRange>[1:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_XT32K_C_LOAD</name>
+					<description>RWA, external 32KHz oscillator load capacitor tune: Cap = RB_XT32K_C_LOAD + 12pF</description>
+					<bitRange>[7:4]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_CK32K_CONFIG</name>
+			<description>RWA, 32KHz oscillator configure</description>
+			<addressOffset>0x2F</addressOffset>
+			<size>8</size>
+			<fields>
+				<field>
+					<name>RB_CLK_XT32K_PON</name>
+					<description>RWA, external 32KHz oscillator power on</description>
+					<bitRange>[0:0]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_CLK_INT32K_PON</name>
+					<description>RWA, internal 32KHz oscillator power on</description>
+					<bitRange>[1:1]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_CLK_OSC32K_XT</name>
+					<description>RWA, 32KHz oscillator source selection: 0=RC, 1=XT</description>
+					<bitRange>[2:2]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_32K_CLK_PIN</name>
+					<description>RO, 32KHz oscillator clock pin status</description>
+					<bitRange>[7:7]</bitRange>
+					<access>read-only</access>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_RTC_FLAG_CTRL</name>
+			<description>RW, RTC flag and clear control</description>
+			<addressOffset>0x30</addressOffset>
+			<size>8</size>
+			<fields>
+				<field>
+					<name>RB_RTC_TMR_CLR</name>
+					<description>RW, set 1 to clear RTC timer action flag, auto clear</description>
+					<bitRange>[4:4]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_RTC_TRIG_CLR</name>
+					<description>RW, set 1 to clear RTC trigger action flag, auto clear</description>
+					<bitRange>[5:5]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_RTC_TMR_FLAG</name>
+					<description>RO, RTC timer action flag</description>
+					<bitRange>[6:6]</bitRange>
+					<access>read-only</access>
+				</field>
+				<field>
+					<name>RB_RTC_TRIG_FLAG</name>
+					<description>RO, RTC trigger action flag</description>
+					<bitRange>[7:7]</bitRange>
+					<access>read-only</access>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_RTC_MODE_CTRL</name>
+			<description>RWA, RTC mode control, SAM</description>
+			<addressOffset>0x31</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_RTC_TMR_MODE</name>
+					<description>RWA, RTC timer mode: 000=0.125S, 001=0.25S, 010=0.5S, 011=1S, 100=2S, 101=4S, 110=8S, 111=16S</description>
+					<bitRange>[2:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_RTC_IGNORE_B0</name>
+					<description>RWA, force ignore bit0 for trigger mode: 0=compare bit0, 1=ignore bit0</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+				<field>
+					<name>RB_RTC_TMR_EN</name>
+					<description>RWA, RTC timer mode enable</description>
+					<bitRange>[4:4]</bitRange>
+				</field>
+				<field>
+					<name>RB_RTC_TRIG_EN</name>
+					<description>RWA, RTC trigger mode enable</description>
+					<bitRange>[5:5]</bitRange>
+				</field>
+				<field>
+					<name>RB_RTC_LOAD_LO</name>
+					<description>RWA, set 1 to load RTC count low word R32_RTC_CNT_32K, auto clear after loaded</description>
+					<bitRange>[6:6]</bitRange>
+				</field>
+				<field>
+					<name>RB_RTC_LOAD_HI</name>
+					<description>RWA, set 1 to load RTC count high word R32_RTC_CNT_DAY, auto clear after loaded</description>
+					<bitRange>[7:7]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R32_RTC_TRIG</name>
+			<description>RWA, RTC trigger value, SAM</description>
+			<addressOffset>0x34</addressOffset>
+			<size>32</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R16_RTC_CNT_32K</name>
+			<description>RO, RTC count based 32KHz</description>
+			<addressOffset>0x38</addressOffset>
+			<size>16</size>
+			<access>read-only</access>
+		</register>
+		<register>
+			<name>R16_RTC_CNT_2S</name>
+			<description>RO, RTC count based 2 second</description>
+			<addressOffset>0x3A</addressOffset>
+			<size>16</size>
+			<access>read-only</access>
+		</register>
+		<register>
+			<name>R32_RTC_CNT_DAY</name>
+			<description>RO, RTC count based one day, only low 14 bit</description>
+			<addressOffset>0x3C</addressOffset>
+			<size>32</size>
+			<access>read-only</access>
+		</register>
+		<register>
+          <name>R8_SAFE_ACCESS_SIG_RD</name>
+          <description>R8_SAFE_ACCESS_SIG_RD Register safe accessing</description>
+          <addressOffset>0x40</addressOffset>
+          <size>8</size>
+          <access>read-only</access>
+		  <fields>
+			<field>
+				<name>RB_SAFE_ACC_MODE</name>
+				<description>RO, current safe accessing mode: 11=safe/unlocked (SAM), other=locked (00..01..10..11)</description>
+				<bitRange>[1:0]</bitRange>
+			</field>
+			<field>
+				<name>RB_SAFE_ACC_ACT</name>
+				<description>RO, indicate safe accessing status now: 0=locked, read only, 1=safe/unlocked (SAM), write enabled</description>
+				<bitRange>[3:3]</bitRange>
+			</field>
+			<field>
+				<name>RB_SAFE_ACC_TIMER</name>
+				<description>RO, safe accessing timer bit mask (16*clock number)</description>
+				<bitRange>[6:4]</bitRange>
+			</field>
+		  </fields>
+        </register>
+		<register>
+			<name>R8_SAFE_ACCESS_SIG_WR</name>
+			<description>safe accessing sign register, must write 0x57 then 0xA8 to enter safe accessing mode</description>
+			<addressOffset>0x40</addressOffset>
+			<size>8</size>
+			<access>write-only</access>
+		</register>
+		<register>
+			<name>R8_CHIP_ID</name>
+			<description>RF, chip ID register, always is ID_CH57*</description>
+			<addressOffset>0x41</addressOffset>
+			<size>8</size>
+			<access>read-only</access>
+		</register>
+		<register>
+			<name>R8_SAFE_ACCESS_ID</name>
+			<description>RF, safe accessing ID register, always 0x04</description>
+			<addressOffset>0x42</addressOffset>
+			<size>8</size>
+			<access>read-only</access>
+		</register>
+		<register>
+			<name>R8_WDOG_COUNT</name>
+			<description>RW, watch-dog count, count by clock frequency Fsys/131072</description>
+			<addressOffset>0x43</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R8_RESET_STATUS</name>
+			<description>RWA, reset status, SAM</description>
+			<addressOffset>0x44</addressOffset>
+			<size>8</size>
+			<fields>
+				<field>
+					<name>RB_RESET_FLAG</name>
+					<description>RO, recent reset flag</description>
+					<bitRange>[2:0]</bitRange>
+					<access>read-only</access>
+				</field>
+				<field>
+					<name>RB_ROM_CODE_OFS</name>
+					<description>RWA, code offset address selection in Flash ROM: 0=start address 0x000000, 1=start address 0x008000</description>
+					<bitRange>[4:4]</bitRange>
+					<access>read-write</access>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_GLOB_CFG_INFO</name>
+			<description>RO, global configuration information and status</description>
+			<addressOffset>0x45</addressOffset>
+			<access>read-only</access>
+			<size>8</size>
+			<fields>
+				<field>
+					<name>RB_CFG_ROM_READ</name>
+					<description>RO, indicate protected status of Flash ROM code and data: 0=reading protect, 1=enable read by external programmer</description>
+					<bitRange>[0:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_CFG_RESET_EN</name>
+					<description>RO, manual reset input enable status</description>
+					<bitRange>[2:2]</bitRange>
+				</field>
+				<field>
+					<name>RB_CFG_BOOT_EN</name>
+					<description>RO, boot-loader enable status</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+				<field>
+					<name>RB_CFG_DEBUG_EN</name>
+					<description>RO, debug enable status</description>
+					<bitRange>[4:4]</bitRange>
+				</field>
+				<field>
+					<name>RB_BOOT_LOADER</name>
+					<description>RO, indicate boot loader status: 0=application status (by software reset), 1=boot loader status</description>
+					<bitRange>[5:5]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_RST_WDOG_CTRL</name>
+			<description>RWA, reset and watch-dog control, SAM</description>
+			<addressOffset>0x46</addressOffset>
+			<access>read-write</access>
+			<size>8</size>
+			<fields>
+				<field>
+					<name>RB_SOFTWARE_RESET</name>
+					<description>WA/WZ, global software reset, high action, auto clear</description>
+					<bitRange>[0:0]</bitRange>
+					<access>write-only</access>
+				</field>
+				<field>
+					<name>RB_WDOG_RST_EN</name>
+					<description>RWA, enable watch-dog reset if watch-dog timer overflow: 0=as timer only, 1=enable reset if timer overflow</description>
+					<bitRange>[1:1]</bitRange>
+				</field>
+				<field>
+					<name>RB_WDOG_INT_EN</name>
+					<description>RWA, watch-dog timer overflow interrupt enable: 0=disable, 1=enable</description>
+					<bitRange>[2:2]</bitRange>
+				</field>
+				<field>
+					<name>RB_WDOG_INT_FLAG</name>
+					<description>RW1, watch-dog timer overflow interrupt flag, cleared by RW1 or reload watch-dog count or __SEV(Send-Event)</description>
+					<bitRange>[4:4]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_GLOB_RESET_KEEP</name>
+			<description>RW, value keeper during global reset</description>
+			<addressOffset>0x47</addressOffset>
+			<access>read-write</access>
+			<size>8</size>
+		</register>
+		<register>
+			<name>R8_CFG_FLASH</name>
+			<description>RWA, Flash ROM configure register</description>
+			<addressOffset>0x4A</addressOffset>
+			<access>read-write</access>
+			<size>8</size>
+			<fields>
+				<field>
+					<name>RB_CFG_FLASH_X</name>
+					<description>RWA, Flash ROM configure data, keep the value unchanged if write</description>
+					<bitRange>[3:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_FLASH_BUSY_EN</name>
+					<description>RWA, enable ROM busy if burst reading: 1-enable(suggest), 0-disable</description>
+					<bitRange>[7:7]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_PLL_CONFIG</name>
+			<description>RWA, PLL configuration control, SAM</description>
+			<addressOffset>0x4B</addressOffset>
+			<size>8</size>
+			<fields>
+				<field>
+					<name>RB_PLL_CFG_DAT</name>
+					<description>RWA, PLL configure data</description>
+					<bitRange>[1:0]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_PLL_LOCKED</name>
+					<description>RO, indicate PLL locked</description>
+					<bitRange>[7:7]</bitRange>
+					<access>read-only</access>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R16_INT32M_CALIB</name>
+			<description>RWA, internal 32MHz oscillator tune control, SAM</description>
+			<addressOffset>0x4C</addressOffset>
+			<size>16</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R8_XT32M_TUNE</name>
+			<description>RWA, external 32MHz oscillator tune control, SAM</description>
+			<addressOffset>0x4E</addressOffset>
+			<size>8</size>
+			<fields>
+				<field>
+					<name>RB_XT32M_I_BIAS</name>
+					<description>RWA, external 32MHz oscillator bias current tune: 00=75% current, 01=standard current, 10=125% current, 11=150% current</description>
+					<bitRange>[1:0]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_XT32M_C_LOAD</name>
+					<description>RWA, external 32MHz oscillator load capacitor tune: Cap = RB_XT32M_C_LOAD * 2 + 10pF</description>
+					<bitRange>[6:4]</bitRange>
+					<access>read-write</access>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R16_OSC_CAL_CNT</name>
+			<description>RO, system clock count value for 32KHz 5 cycles</description>
+			<addressOffset>0x50</addressOffset>
+			<size>16</size>
+			<access>read-only</access>
+			<fields>
+				<field>
+					<name>RB_OSC_CAL_CNT</name>
+					<description>RO, system clock count value for 32KHz 5 cycles</description>
+					<bitRange>[11:0]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_OSC_CAL_CTRL</name>
+			<description>RWA, oscillator frequency calibration control, SAM</description>
+			<addressOffset>0x52</addressOffset>
+			<size>8</size>
+			<fields>
+				<field>
+					<name>RB_OSC_CNT_EN</name>
+					<description>RWA, calibration counter enable</description>
+					<bitRange>[0:0]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_OSC_CNT_HALT</name>
+					<description>RO, calibration counter halt status: 0=counting, 1=halt for reading count value</description>
+					<bitRange>[1:1]</bitRange>
+					<access>read-only</access>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_ADC_CHANNEL</name>
+			<description>RW, ADC input channel selection</description>
+			<addressOffset>0x58</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_ADC_CH_INX</name>
+					<description>RW, ADC input channel index</description>
+					<bitRange>[3:0]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_ADC_CFG</name>
+			<description>RW, ADC configure</description>
+			<addressOffset>0x59</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_ADC_POWER_ON</name>
+					<description>RW, ADC power control: 0=power down, 1=power on</description>
+					<bitRange>[0:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_ADC_BUF_EN</name>
+					<description>RW, ADC input buffer enable</description>
+					<bitRange>[1:1]</bitRange>
+				</field>
+				<field>
+					<name>RB_ADC_DIFF_EN</name>
+					<description>RW, ADC input channel mode: 0=single-end, 1=differnetial</description>
+					<bitRange>[2:2]</bitRange>
+				</field>
+				<field>
+					<name>RB_ADC_OFS_TEST</name>
+					<description>RW, enable ADC offset test mode: 0=normal mode, 1=short port4 to test offset</description>
+					<bitRange>[3:3]</bitRange>
+				</field>
+				<field>
+					<name>RB_ADC_PGA_GAIN</name>
+					<description>RW, set ADC input PGA gain: 00=-12dB, 01=-6dB, 10=0dB, 11=6dB</description>
+					<bitRange>[5:4]</bitRange>
+				</field>
+				<field>
+					<name>RB_ADC_CLK_DIV</name>
+					<description>RW, select ADC clock frequency: 00=3.2MHz, 01=2.67MHz, 10=5.33MHz, 11=4MHz</description>
+					<bitRange>[7:6]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_ADC_CONVERT</name>
+			<description>RW, ADC convert control</description>
+			<addressOffset>0x5A</addressOffset>
+			<size>8</size>
+			<fields>
+				<field>
+					<name>RB_ADC_START</name>
+					<description>RW, ADC convert start control: 0=stop ADC convert, 1=start an ADC convert, auto clear</description>
+					<bitRange>[0:0]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_TKEY_PWR_ON</name>
+					<description>RW, Touchkey power on: 0=power down, 1=power on</description>
+					<bitRange>[3:3]</bitRange>
+					<access>read-write</access>
+				</field>
+				<field>
+					<name>RB_TKEY_ACTION</name>
+					<description>RO, Touchkey action status: 0=free, 1=discharge or charge or ADC</description>
+					<bitRange>[4:4]</bitRange>
+					<access>read-only</access>
+				</field>
+				<field>
+					<name>RB_TKEY_CHG_ACT</name>
+					<description>RO, Touchkey capacity charge status: 0=free, 1=charge</description>
+					<bitRange>[5:5]</bitRange>
+					<access>read-only</access>
+				</field>
+				<field>
+					<name>RB_ADC_EOC_X</name>
+					<description>RO, end of ADC conversion flag</description>
+					<bitRange>[7:7]</bitRange>
+					<access>read-only</access>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_TEM_SENSOR</name>
+			<description>RW, temperature sensor control</description>
+			<addressOffset>0x5B</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+			<fields>
+				<field>
+					<name>RB_TEM_SEN_CALIB</name>
+					<description>RW, temperature sensor calibration</description>
+					<bitRange>[2:0]</bitRange>
+				</field>
+				<field>
+					<name>RB_TEM_SEN_PWR_ON</name>
+					<description>RW, temperature sensor power control: 0=power down, 1=power on</description>
+					<bitRange>[7:7]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R16_ADC_DATA</name>
+			<description>RO, ADC data</description>
+			<addressOffset>0x5C</addressOffset>
+			<size>16</size>
+			<access>read-only</access>
+			<fields>
+				<field>
+					<name>RB_ADC_DATA</name>
+					<description>RO, ADC conversion data</description>
+					<bitRange>[11:0]</bitRange>
+				</field>
+			</fields>
+		</register>
+		<register>
+			<name>R8_ADC_INT_FLAG</name>
+			<description>RO, ADC interrupt flag register</description>
+			<addressOffset>0x5E</addressOffset>
+			<size>8</size>
+			<access>read-only</access>
+			<fields>
+				<field>
+					<name>RB_ADC_IF_EOC</name>
+					<description>RO, ADC conversion interrupt flag: 0=free or converting, 1=end of conversion, interrupt action, write R8_ADC_CONVERT to clear flag</description>
+					<bitRange>[7:7]</bitRange>
+				</field>		
+			</fields>
+		</register>
+		<register>
+			<name>R8_TKEY_CNT</name>
+			<description>WO, Touch-key charge and discharge count</description>
+			<addressOffset>0x5F</addressOffset>
+			<size>8</size>
+			<access>write-only</access>
+		</register>
+		
+		<register>
+			<name>R16_PA_INT_EN</name>
+			<description>RW, GPIO PA interrupt enable</description>
+			<addressOffset>0x90</addressOffset>
+			<size>16</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R16_PB_INT_EN</name>
+			<description>RW, GPIO PB interrupt enable</description>
+			<addressOffset>0x92</addressOffset>
+			<size>16</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R16_PA_INT_MODE</name>
+			<description>RW, GPIO PA interrupt mode: 0=level action, 1=edge action</description>
+			<addressOffset>0x94</addressOffset>
+			<size>16</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R16_PB_INT_MODE__R8_SLV_RD_STAT</name>
+			<description>RW, GPIO PB interrupt mode: 0=level action, 1=edge action;RW, status for parallel slave read</description>
+			<addressOffset>0x96</addressOffset>
+			<size>16</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R8_SLV_WR_DATA</name>
+			<description>RW, data or command from parallel slave write</description>
+			<addressOffset>0x97</addressOffset>
+			<size>8</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R16_PA_INT_IF</name>
+			<description>RW1, GPIO PA interrupt flag</description>
+			<addressOffset>0x9C</addressOffset>
+			<size>16</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R16_PB_INT_IF</name>
+			<description>RW1, GPIO PB interrupt flag</description>
+			<addressOffset>0x9E</addressOffset>
+			<size>16</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R32_PA_DIR</name>
+			<description>RW, GPIO PA I/O direction: 0=in, 1=out</description>
+			<size>32</size>
+			<addressOffset>0xA0</addressOffset>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R32_PA_PIN</name>
+			<description>RO, GPIO PA input</description>
+			<addressOffset>0xA4</addressOffset>
+			<size>32</size>
+			<access>read-only</access>
+		</register>
+		<register>
+			<name>R32_PA_OUT</name>
+			<description>RW, GPIO PA output</description>
+			<addressOffset>0xA8</addressOffset>
+			<size>32</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R32_PA_CLR</name>
+			<description>WZ, GPIO PA clear output: 0=keep, 1=clear</description>
+			<addressOffset>0xAC</addressOffset>
+			<size>32</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R32_PA_PU</name>
+			<description>RW, GPIO PA pullup resistance enable</description>
+			<addressOffset>0xB0</addressOffset>
+			<size>32</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R32_PA_PD_DRV</name>
+			<description>RW, PA pulldown for input or PA driving capability for output</description>
+			<addressOffset>0xB4</addressOffset>
+			<size>32</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R32_PB_DIR</name>
+			<description>RW, GPIO PB I/O direction: 0=in, 1=out</description>
+			<addressOffset>0xC0</addressOffset>
+			<size>32</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R32_PB_PIN</name>
+			<description>RO, GPIO PB input</description>
+			<addressOffset>0xC4</addressOffset>
+			<size>32</size>
+			<access>read-only</access>
+		</register>
+		<register>
+			<name>R32_PB_OUT__R8_SLV_RD_DATA</name>
+			<description>RW, GPIO PB output;RW, data for parallel slave read</description>
+			<addressOffset>0xC8</addressOffset>
+			<size>32</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R32_PB_CLR</name>
+			<description>WZ, GPIO PB clear output: 0=keep, 1=clear</description>
+			<addressOffset>0xCC</addressOffset>
+			<size>32</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R32_PB_PU</name>
+			<description>RW, GPIO PB pullup resistance enable</description>
+			<addressOffset>0xD0</addressOffset>
+			<size>32</size>
+			<access>read-write</access>
+		</register>
+		<register>
+			<name>R32_PB_PD_DRV</name>
+			<description>RW, PB pulldown for input or PB driving capability for output</description>
+			<addressOffset>0xD4</addressOffset>
+			<size>32</size>
+			<access>read-write</access>
+		</register>
+	 </registers> 
+	</peripheral>
+	<peripheral>
+		<name>FLASH</name>
+		<description>Flash ROM control register</description>
+		<groupName>Flash</groupName>
+		<baseAddress>0x40001800</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<registers>
+			<register>
+				<name>R32_FLASH_DATA</name>
+				<description>RW, Flash ROM data</description>
+				<addressOffset>0x00</addressOffset>
+				<size>32</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R32_FLASH_ADDR</name>
+				<description>RW, Flash ROM address</description>
+				<addressOffset>0x04</addressOffset>
+				<size>32</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_FLASH_COMMAND</name>
+				<description>WO, Flash ROM operation command</description>
+				<addressOffset>0x08</addressOffset>
+				<size>8</size>
+				<access>write-only</access>
+			</register>
+			<register>
+				<name>R8_FLASH_PROTECT</name>
+				<description>RW, Flash ROM protect control</description>
+				<addressOffset>0x09</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_ROM_WE_MUST_10</name>
+						<description>RW, must write 10</description>
+						<access>write-only</access>
+						<bitRange>[7:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_ROM_DATA_WE</name>
+						<description>RW, enable Flash ROM data area being erase/write: 0=writing protect, 1=enable program and erase</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_ROM_CODE_WE</name>
+						<description>RW, enable Flash ROM code area being erase/write: 0=writing protect, 1=enable program and erase</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R16_FLASH_STATUS</name>
+				<description>RO, Flash ROM operation status</description>
+				<addressOffset>0x0A</addressOffset>
+				<size>16</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_ROM_CMD_TOUT</name>
+						<description>RO, Flash ROM operation result: 0=success, 1=operation time out</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_ROM_CMD_ERR</name>
+						<description>RO, Flash ROM operation command error flag: 0=command accepted, 1=unknown command</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_ROM_ADDR_OK</name>
+						<description>RO, Flash ROM erase/write operation address valid flag, can be reviewed before or after operation: 0=invalid parameter, 1=address valid</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_ROM_READ_FREE</name>
+						<description>RO, indicate protected status of Flash ROM code and data: 0=reading protect, 1=enable read by external programmer</description>
+						<bitRange>[8:8]</bitRange>
+					</field>
+				</fields>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>TMR0</name>
+		<description>Timer0 register</description>
+		<groupName>TMR</groupName>
+		<baseAddress>0x40002000</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>TMR0</name>
+			<description>TMR0_IRQHandler</description>
+			<value>0</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_TMR0_CTRL_MOD</name>
+				<description>RW, TMR0 mode control</description>
+				<addressOffset>0x00</addressOffset>
+				<access>read-write</access>
+				<size>8</size>
+				<fields>
+					<field>
+						<name>RB_TMR_MODE_IN</name>
+						<description>RW, timer in mode: 0=timer/PWM, 1=capture/count</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_ALL_CLEAR</name>
+						<description>RW, force clear timer FIFO and count</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_COUNT_EN</name>
+						<description>RW, timer count enable</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_OUT_EN</name>
+						<description>RW, timer output enable</description>
+						<bitRange>[3:3]</bitRange>				
+					</field>
+					<field>
+						<name>RB_TMR_OUT_POLAR_COUNT</name>
+						<description>RW, timer PWM output polarity: 0=default low and high action, 1=default high and low action;RW, count sub-mode if RB_TMR_MODE_IN=1: 0=capture, 1=count</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_PWM_REPEAT_EDGE</name>
+						<description>RW, timer PWM repeat mode: 00=1, 01=4, 10=8, 11-16;RW, timer capture edge mode: 00=disable, 01=edge change, 10=fall to fall, 11-rise to rise</description>
+						<bitRange>[7:6]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR0_INTER_EN</name>
+				<description>RW, TMR0 interrupt enable</description>
+				<addressOffset>0x02</addressOffset>
+				<access>read-write</access>
+				<size>8</size>
+				<fields>
+					<field>
+						<name>RB_TMR_IE_CYC_END</name>
+						<description>RW, enable interrupt for timer capture count timeout or PWM cycle end</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_DATA_ACT</name>
+						<description>RW, enable interrupt for timer capture input action or PWM trigger</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_FIFO_HF</name>
+						<description>RW, enable interrupt for timer FIFO half (capture fifo >=4 or PWM fifo less than 3)</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_DMA_END</name>
+						<description>RW, enable interrupt for timer1/2 DMA completion</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_FIFO_OV</name>
+						<description>RW, enable interrupt for timer FIFO overflow</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR0_INT_FLAG</name>
+				<description>RW1, TMR0 interrupt flag</description>
+				<addressOffset>0x06</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_TMR_IF_CYC_END</name>
+						<description>RW1, interrupt flag for timer capture count timeout or PWM cycle end</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_DATA_ACT</name>
+						<description>RW1, interrupt flag for timer capture input action or PWM trigger</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_FIFO_HF</name>
+						<description>RW1, interrupt flag for timer FIFO half (capture fifo >=4 or PWM fifo less than 3 </description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_DMA_END</name>
+						<description>RW1, interrupt flag for timer1/2 DMA completion</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_FIFO_OV</name>
+						<description>RW1, interrupt flag for timer FIFO overflow</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR0_FIFO_COUNT</name>
+				<description>RO, TMR0 FIFO count status</description>
+				<addressOffset>0x07</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R32_TMR0_COUNT</name>
+				<description>RO, TMR0 current count</description>
+				<addressOffset>0x08</addressOffset>
+				<size>32</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R32_TMR0_CNT_END</name>
+				<description>RW, TMR0 end count value, only low 26 bit</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>32</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R32_TMR0_FIFO_RO</name>
+				<description>RO, TMR0 FIFO register, only low 26 bit</description>
+				<addressOffset>0x10</addressOffset>
+				<size>32</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R32_TMR0_FIFO_WO</name>
+				<description>WO, TMR0 FIFO register, only low 26 bit</description>
+				<addressOffset>0x10</addressOffset>
+				<size>32</size>
+				<access>write-only</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>TMR1</name>
+		<description>Timer1 register</description>
+		<groupName>TMR</groupName>
+		<baseAddress>0x40002400</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>TMR1</name>
+			<description>TMR1_IRQHandler</description>
+			<value>8</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_TMR1_CTRL_MOD</name>
+				<description>RW, TMR1 mode control</description>
+				<size>8</size>
+				<addressOffset>0x00</addressOffset>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_TMR_MODE_IN</name>
+						<description>RW, timer in mode: 0=timer/PWM, 1=capture/count</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_ALL_CLEAR</name>
+						<description>RW, force clear timer FIFO and count</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_COUNT_EN</name>
+						<description>RW, timer count enable</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_OUT_EN</name>
+						<description>RW, timer output enable</description>
+						<bitRange>[3:3]</bitRange>				
+					</field>
+					<field>
+						<name>RB_TMR_OUT_POLAR_COUNT</name>
+						<description>RW, timer PWM output polarity: 0=default low and high action, 1=default high and low action;RW, count sub-mode if RB_TMR_MODE_IN=1: 0=capture, 1=count</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_PWM_REPEAT_EDGE</name>
+						<description>RW, timer PWM repeat mode: 00=1, 01=4, 10=8, 11-16;RW, timer capture edge mode: 00=disable, 01=edge change, 10=fall to fall, 11-rise to rise</description>
+						<bitRange>[7:6]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR1_CTRL_DMA</name>
+				<description>RW, TMR1 DMA control</description>
+				<addressOffset>0x01</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_TMR_DMA_ENABLE</name>
+						<description>RW, timer1/2 DMA enable</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_DMA_LOOP</name>
+						<description>RW, timer1/2 DMA address loop enable</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR1_INTER_EN</name>
+				<description>RW, TMR1 interrupt enable</description>
+				<addressOffset>0x02</addressOffset>
+				<access>read-write</access>
+				<size>8</size>
+				<fields>
+					<field>
+						<name>RB_TMR_IE_CYC_END</name>
+						<description>RW, enable interrupt for timer capture count timeout or PWM cycle end</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_DATA_ACT</name>
+						<description>RW, enable interrupt for timer capture input action or PWM trigger</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_FIFO_HF</name>
+						<description>RW, enable interrupt for timer FIFO half (capture fifo >=4 or PWM fifo less than 3)</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_DMA_END</name>
+						<description>RW, enable interrupt for timer1/2 DMA completion</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_FIFO_OV</name>
+						<description>RW, enable interrupt for timer FIFO overflow</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR1_INT_FLAG</name>
+				<description>RW1, TMR1 interrupt flag</description>
+				<addressOffset>0x06</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_TMR_IF_CYC_END</name>
+						<description>RW1, interrupt flag for timer capture count timeout or PWM cycle end</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_DATA_ACT</name>
+						<description>RW1, interrupt flag for timer capture input action or PWM trigger</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_FIFO_HF</name>
+						<description>RW1, interrupt flag for timer FIFO half (capture fifo >=4 or PWM fifo less than 3 </description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_DMA_END</name>
+						<description>RW1, interrupt flag for timer1/2 DMA completion</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_FIFO_OV</name>
+						<description>RW1, interrupt flag for timer FIFO overflow</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR1_FIFO_COUNT</name>
+				<description>RO, TMR1 FIFO count status</description>
+				<addressOffset>0x07</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R32_TMR1_COUNT</name>
+				<description>RO, TMR1 current count</description>
+				<addressOffset>0x08</addressOffset>
+				<size>32</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R32_TMR1_CNT_END</name>
+				<description>RW, TMR1 end count value, only low 26 bit</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>32</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R32_TMR1_FIFO_RO</name>
+				<description>RO, TMR1 FIFO register, only low 26 bit</description>
+				<addressOffset>0x10</addressOffset>
+				<size>32</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R32_TMR1_FIFO_WO</name>
+				<description>WO, TMR1 FIFO register, only low 26 bit</description>
+				<addressOffset>0x10</addressOffset>
+				<size>32</size>
+				<access>write-only</access>
+			</register>
+			<register>
+				<name>R16_TMR1_DMA_NOW</name>
+				<description>RO, TMR1 DMA current address</description>
+				<addressOffset>0x14</addressOffset>
+				<size>16</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R16_TMR1_DMA_BEG</name>
+				<description>RW, TMR1 DMA begin address</description>
+				<addressOffset>0x18</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_TMR1_DMA_END</name>
+				<description>RW, TMR1 DMA end address</description>
+				<addressOffset>0x1C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>TMR2</name>
+		<description>Timer2 register</description>
+		<groupName>TMR</groupName>
+		<baseAddress>0x40002800</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>TMR2</name>
+			<description>TMR2_IRQHandler</description>
+			<value>9</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_TMR2_CTRL_MOD</name>
+				<description>RW, TMR2 mode control</description>
+				<size>8</size>
+				<addressOffset>0x00</addressOffset>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_TMR_MODE_IN</name>
+						<description>RW, timer in mode: 0=timer/PWM, 1=capture/count</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_ALL_CLEAR</name>
+						<description>RW, force clear timer FIFO and count</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_COUNT_EN</name>
+						<description>RW, timer count enable</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_OUT_EN</name>
+						<description>RW, timer output enable</description>
+						<bitRange>[3:3]</bitRange>				
+					</field>
+					<field>
+						<name>RB_TMR_OUT_POLAR_COUNT</name>
+						<description>RW, timer PWM output polarity: 0=default low and high action, 1=default high and low action;RW, count sub-mode if RB_TMR_MODE_IN=1: 0=capture, 1=count</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_PWM_REPEAT_EDGE</name>
+						<description>RW, timer PWM repeat mode: 00=1, 01=4, 10=8, 11-16;RW, timer capture edge mode: 00=disable, 01=edge change, 10=fall to fall, 11-rise to rise</description>
+						<bitRange>[7:6]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR2_CTRL_DMA</name>
+				<description>RW, TMR2 DMA control</description>
+				<addressOffset>0x01</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_TMR_DMA_ENABLE</name>
+						<description>RW, timer1/2 DMA enable</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_DMA_LOOP</name>
+						<description>RW, timer1/2 DMA address loop enable</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR2_INTER_EN</name>
+				<description>RW, TMR2 interrupt enable</description>
+				<addressOffset>0x02</addressOffset>
+				<access>read-write</access>
+				<size>8</size>
+				<fields>
+					<field>
+						<name>RB_TMR_IE_CYC_END</name>
+						<description>RW, enable interrupt for timer capture count timeout or PWM cycle end</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_DATA_ACT</name>
+						<description>RW, enable interrupt for timer capture input action or PWM trigger</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_FIFO_HF</name>
+						<description>RW, enable interrupt for timer FIFO half (capture fifo >=4 or PWM fifo less than 3)</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_DMA_END</name>
+						<description>RW, enable interrupt for timer1/2 DMA completion</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_FIFO_OV</name>
+						<description>RW, enable interrupt for timer FIFO overflow</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR2_INT_FLAG</name>
+				<description>RW1, TMR2 interrupt flag</description>
+				<addressOffset>0x06</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_TMR_IF_CYC_END</name>
+						<description>RW1, interrupt flag for timer capture count timeout or PWM cycle end</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_DATA_ACT</name>
+						<description>RW1, interrupt flag for timer capture input action or PWM trigger</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_FIFO_HF</name>
+						<description>RW1, interrupt flag for timer FIFO half (capture fifo >=4 or PWM fifo less than 3 </description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_DMA_END</name>
+						<description>RW1, interrupt flag for timer1/2 DMA completion</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_FIFO_OV</name>
+						<description>RW1, interrupt flag for timer FIFO overflow</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR2_FIFO_COUNT</name>
+				<description>RO, TMR2 FIFO count status</description>
+				<addressOffset>0x07</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R32_TMR2_COUNT</name>
+				<description>RO, TMR2 current count</description>
+				<addressOffset>0x08</addressOffset>
+				<size>32</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R32_TMR2_CNT_END</name>
+				<description>RW, TMR2 end count value, only low 26 bit</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>32</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R32_TMR2_FIFO_RO</name>
+				<description>RO, TMR2 FIFO register, only low 26 bit</description>
+				<addressOffset>0x10</addressOffset>
+				<size>32</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R32_TMR2_FIFO_WO</name>
+				<description>WO, TMR2 FIFO register, only low 26 bit</description>
+				<addressOffset>0x10</addressOffset>
+				<size>32</size>
+				<access>write-only</access>
+			</register>
+			<register>
+				<name>R16_TMR2_DMA_NOW</name>
+				<description>RO, TMR2 DMA current address</description>
+				<addressOffset>0x14</addressOffset>
+				<size>16</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R16_TMR2_DMA_BEG</name>
+				<description>RW, TMR2 DMA begin address</description>
+				<addressOffset>0x18</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_TMR2_DMA_END</name>
+				<description>RW, TMR2 DMA end address</description>
+				<addressOffset>0x1C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>TMR3</name>
+		<description>Timer3 register</description>
+		<groupName>TMR</groupName>
+		<baseAddress>0x40002C00</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>TMR3</name>
+			<description>TMR3_IRQHandler</description>
+			<value>16</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_TMR3_CTRL_MOD</name>
+				<description>RW, TMR3 mode control</description>
+				<addressOffset>0x00</addressOffset>
+				<access>read-write</access>
+				<size>8</size>
+				<fields>
+					<field>
+						<name>RB_TMR_MODE_IN</name>
+						<description>RW, timer in mode: 0=timer/PWM, 1=capture/count</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_ALL_CLEAR</name>
+						<description>RW, force clear timer FIFO and count</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_COUNT_EN</name>
+						<description>RW, timer count enable</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_OUT_EN</name>
+						<description>RW, timer output enable</description>
+						<bitRange>[3:3]</bitRange>				
+					</field>
+					<field>
+						<name>RB_TMR_OUT_POLAR_COUNT</name>
+						<description>RW, timer PWM output polarity: 0=default low and high action, 1=default high and low action;RW, count sub-mode if RB_TMR_MODE_IN=1: 0=capture, 1=count</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_PWM_REPEAT_EDGE</name>
+						<description>RW, timer PWM repeat mode: 00=1, 01=4, 10=8, 11-16;RW, timer capture edge mode: 00=disable, 01=edge change, 10=fall to fall, 11-rise to rise</description>
+						<bitRange>[7:6]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR3_INTER_EN</name>
+				<description>RW, TMR3 interrupt enable</description>
+				<addressOffset>0x02</addressOffset>
+				<access>read-write</access>
+				<size>8</size>
+				<fields>
+					<field>
+						<name>RB_TMR_IE_CYC_END</name>
+						<description>RW, enable interrupt for timer capture count timeout or PWM cycle end</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_DATA_ACT</name>
+						<description>RW, enable interrupt for timer capture input action or PWM trigger</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_FIFO_HF</name>
+						<description>RW, enable interrupt for timer FIFO half (capture fifo >=4 or PWM fifo less than 3)</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_DMA_END</name>
+						<description>RW, enable interrupt for timer1/2 DMA completion</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IE_FIFO_OV</name>
+						<description>RW, enable interrupt for timer FIFO overflow</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR3_INT_FLAG</name>
+				<description>RW1, TMR3 interrupt flag</description>
+				<addressOffset>0x06</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_TMR_IF_CYC_END</name>
+						<description>RW1, interrupt flag for timer capture count timeout or PWM cycle end</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_DATA_ACT</name>
+						<description>RW1, interrupt flag for timer capture input action or PWM trigger</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_FIFO_HF</name>
+						<description>RW1, interrupt flag for timer FIFO half (capture fifo >=4 or PWM fifo less than 3 </description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_DMA_END</name>
+						<description>RW1, interrupt flag for timer1/2 DMA completion</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_TMR_IF_FIFO_OV</name>
+						<description>RW1, interrupt flag for timer FIFO overflow</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_TMR3_FIFO_COUNT</name>
+				<description>RO, TMR3 FIFO count status</description>
+				<addressOffset>0x07</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R32_TMR3_COUNT</name>
+				<description>RO, TMR3 current count</description>
+				<addressOffset>0x08</addressOffset>
+				<size>32</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R32_TMR3_CNT_END</name>
+				<description>RW, TMR3 end count value, only low 26 bit</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>32</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R32_TMR3_FIFO_RO</name>
+				<description>RO, TMR3 FIFO register, only low 26 bit</description>
+				<addressOffset>0x10</addressOffset>
+				<size>32</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R32_TMR3_FIFO_WO</name>
+				<description>WO, TMR3 FIFO register, only low 26 bit</description>
+				<addressOffset>0x10</addressOffset>
+				<size>32</size>
+				<access>write-only</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>UART0</name>
+		<description>UART0 register</description>
+		<groupName>UART</groupName>
+		<baseAddress>0x40003000</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>UART0</name>
+			<description>UART0_IRQHandler</description>
+			<value>10</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_UART0_MCR</name>
+				<description>RW, UART0 modem control</description>
+				<addressOffset>0x00</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_MCR_DTR</name>
+						<description>RW, UART0 control DTR</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_MCR_RTS</name>
+						<description>RW, UART0 control RTS</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_MCR_OUT1</name>
+						<description>RW, UART0 control OUT1</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_MCR_OUT2</name>
+						<description>RW, UART control OUT2</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_MCR_LOOP</name>
+						<description>RW, UART0 enable local loop back</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_MCR_AU_FLOW_EN</name>
+						<description>RW, UART0 enable autoflow control</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_MCR_TNOW</name>
+						<description>RW, UART0 enable TNOW output on DTR pin</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_MCR_HALF</name>
+						<description>RW, UART0 enable half-duplex</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART0_IER</name>
+				<description>RW, UART0 interrupt enable</description>
+				<addressOffset>0x01</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_IER_RECV_RDY</name>
+						<description>RW, UART interrupt enable for receiver data ready</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_THR_EMPTY</name>
+						<description>RW, UART interrupt enable for THR empty</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_LINE_STAT</name>
+						<description>RW, UART interrupt enable for receiver line status</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_MODEM_CHG</name>
+						<description>RW, UART0 interrupt enable for modem status change</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_DTR_EN</name>
+						<description>RW, UART0 DTR/TNOW output pin enable</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_RTS_EN</name>
+						<description>RW, UART0 RTS output pin enable</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_TXD_EN</name>
+						<description>RW, UART TXD pin enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_RESET</name>
+						<description>WZ, UART software reset control, high action, auto clear</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART0_FCR</name>
+				<description>RW, UART0 FIFO control</description>
+				<addressOffset>0x02</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_FCR_FIFO_EN</name>
+						<description>RW, UART FIFO enable</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_FCR_RX_FIFO_CLR</name>
+						<description>WZ, clear UART receiver FIFO, high action, auto clear</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_FCR_TX_FIFO_CLR</name>
+						<description>WZ, clear UART transmitter FIFO, high action, auto clear</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_FCR_FIFO_TRIG</name>
+						<description>RW, UART receiver FIFO trigger level: 00-1byte, 01-2bytes, 10-4bytes, 11-7bytes</description>
+						<bitRange>[7:6]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART0_LCR</name>
+				<description>RW, UART0 line control</description>
+				<addressOffset>0x03</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_LCR_WORD_SZ</name>
+						<description>RW, UART word bit length: 00-5bit, 01-6bit, 10-7bit, 11-8bit</description>
+						<bitRange>[1:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_STOP_BIT</name>
+						<description>RW, UART stop bit length: 0-1bit, 1-2bit</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_PAR_EN</name>
+						<description>RW, UART parity enable</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_PAR_MOD</name>
+						<description>RW, UART parity mode: 00-odd, 01-even, 10-mark, 11-space</description>
+						<bitRange>[5:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_BREAK_EN</name>
+						<description>RW, UART break control enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_GP_BIT__RB_LCR_DLAB</name>
+						<description>RW, UART general purpose bit;RW, UART reserved bit</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART0_IIR</name>
+				<description>RO, UART0 interrupt identification</description>
+				<addressOffset>0x04</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_IIR_NO_INT</name>
+						<description>RO, UART no interrupt flag: 0=interrupt action, 1=no interrupt</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_IIR_INT_MASK</name>
+						<description>RO, UART interrupt flag bit mask</description>
+						<bitRange>[3:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_IIR_FIFO_ID</name>
+						<description>RO, UART FIFO enabled flag</description>
+						<bitRange>[7:7]</bitRange>
+					</field>				
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART0_LSR</name>
+				<description>RO, UART0 line status</description>
+				<addressOffset>0x05</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_LSR_DATA_RDY</name>
+						<description>RO, UART receiver fifo data ready status</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_OVER_ERR</name>
+						<description>RZ, UART receiver overrun error</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_PAR_ERR</name>
+						<description>RZ, UART receiver parity error</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_FRAME_ERR</name>
+						<description>RZ, UART receiver frame error</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_BREAK_ERR</name>
+						<description>RZ, UART receiver break error</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_TX_FIFO_EMP</name>
+						<description>RO, UART transmitter fifo empty status</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_TX_ALL_EMP</name>
+						<description>RO, UART transmitter all empty status</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_ERR_RX_FIFO</name>
+						<description>RO, indicate error in UART receiver fifo</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART0_MSR</name>
+				<description>RO, UART0 modem status</description>
+				<addressOffset>0x06</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_MSR_CTS_CHG</name>
+						<description>RZ, UART0 CTS changed status, high action</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_MSR_DSR_CHG</name>
+						<description>RZ, UART0 DSR changed status, high action</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_MSR_RI_CHG</name>
+						<description>RZ, UART0 RI changed status, high action</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_MSR_DCD_CHG</name>
+						<description>RZ, UART0 DCD changed status, high action</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_MSR_CTS</name>
+						<description>RO, UART0 CTS action status</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_MSR_DSR</name>
+						<description>RO, UART0 DSR action statusv</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_MSR_RI</name>
+						<description>RO, UART0 RI action status</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_MSR_DCD</name>
+						<description>RO, UART0 DCD action status</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART0_RBR</name>
+				<description>RO, UART0 receiver buffer, receiving byte</description>
+				<addressOffset>0x08</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R8_UART0_THR</name>
+				<description>WO, UART0 transmitter holding, transmittal byte</description>
+				<addressOffset>0x08</addressOffset>
+				<size>8</size>
+				<access>write-only</access>
+			</register>
+			<register>
+				<name>R8_UART0_RFC</name>
+				<description>RO, UART0 receiver FIFO count</description>
+				<addressOffset>0x0A</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R8_UART0_TFC</name>
+				<description>RO, UART0 transmitter FIFO count</description>
+				<addressOffset>0x0B</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R16_UART0_DL</name>
+				<description>RW, UART0 divisor latch</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_UART0_DIV</name>
+				<description>RW, UART0 pre-divisor latch byte, only low 7 bit, from 1 to 0/128</description>
+				<addressOffset>0x0E</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_UART0_ADR</name>
+				<description>RW, UART0 slave address: 0xFF=disable, other=enable</description>
+				<addressOffset>0x0F</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>UART1</name>
+		<description>UART1 register</description>
+		<groupName>UART</groupName>
+		<baseAddress>0x40003400</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>UART1</name>
+			<description>UART1_IRQHandler</description>
+			<value>11</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_UART1_MCR</name>
+				<description>RW, UART1 modem control</description>
+				<addressOffset>0x00</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_MCR_OUT2</name>
+						<description>RW, UART control OUT2</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART1_IER</name>
+				<description>RW, UART1 interrupt enable</description>
+				<addressOffset>0x01</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_IER_RECV_RDY</name>
+						<description>RW, UART interrupt enable for receiver data ready</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_THR_EMPTY</name>
+						<description>RW, UART interrupt enable for THR empty</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_LINE_STAT</name>
+						<description>RW, UART interrupt enable for receiver line status</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_TXD_EN</name>
+						<description>RW, UART TXD pin enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_RESET</name>
+						<description>WZ, UART software reset control, high action, auto clear</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART1_FCR</name>
+				<description>RW, UART1 FIFO control</description>
+				<addressOffset>0x02</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_FCR_FIFO_EN</name>
+						<description>RW, UART FIFO enable</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_FCR_RX_FIFO_CLR</name>
+						<description>WZ, clear UART receiver FIFO, high action, auto clear</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_FCR_TX_FIFO_CLR</name>
+						<description>WZ, clear UART transmitter FIFO, high action, auto clear</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_FCR_FIFO_TRIG</name>
+						<description>RW, UART receiver FIFO trigger level: 00-1byte, 01-2bytes, 10-4bytes, 11-7bytes</description>
+						<bitRange>[7:6]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART1_LCR</name>
+				<description>RW, UART1 line control</description>
+				<addressOffset>0x03</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_LCR_WORD_SZ</name>
+						<description>RW, UART word bit length: 00-5bit, 01-6bit, 10-7bit, 11-8bit</description>
+						<bitRange>[1:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_STOP_BIT</name>
+						<description>RW, UART stop bit length: 0-1bit, 1-2bit</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_PAR_EN</name>
+						<description>RW, UART parity enable</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_PAR_MOD</name>
+						<description>RW, UART parity mode: 00-odd, 01-even, 10-mark, 11-space</description>
+						<bitRange>[5:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_BREAK_EN</name>
+						<description>RW, UART break control enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_GP_BIT__RB_LCR_DLAB</name>
+						<description>RW, UART general purpose bit;RW, UART reserved bit</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART1_IIR</name>
+				<description>RO, UART1 interrupt identification</description>
+				<addressOffset>0x04</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_IIR_NO_INT</name>
+						<description>RO, UART no interrupt flag: 0=interrupt action, 1=no interrupt</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_IIR_INT_MASK</name>
+						<description>RO, UART interrupt flag bit mask</description>
+						<bitRange>[3:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_IIR_FIFO_ID</name>
+						<description>RO, UART FIFO enabled flag</description>
+						<bitRange>[7:7]</bitRange>
+					</field>				
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART1_LSR</name>
+				<description>RO, UART1 line status</description>
+				<addressOffset>0x05</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_LSR_DATA_RDY</name>
+						<description>RO, UART receiver fifo data ready status</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_OVER_ERR</name>
+						<description>RZ, UART receiver overrun error</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_PAR_ERR</name>
+						<description>RZ, UART receiver parity error</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_FRAME_ERR</name>
+						<description>RZ, UART receiver frame error</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_BREAK_ERR</name>
+						<description>RZ, UART receiver break error</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_TX_FIFO_EMP</name>
+						<description>RO, UART transmitter fifo empty status</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_TX_ALL_EMP</name>
+						<description>RO, UART transmitter all empty status</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_ERR_RX_FIFO</name>
+						<description>RO, indicate error in UART receiver fifo</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART1_RBR</name>
+				<description>RO, UART1 receiver buffer, receiving byte</description>
+				<addressOffset>0x08</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R8_UART1_THR</name>
+				<description>WO, UART1 transmitter holding, transmittal byte</description>
+				<addressOffset>0x08</addressOffset>
+				<size>8</size>
+				<access>write-only</access>
+			</register>
+			<register>
+				<name>R8_UART1_RFC</name>
+				<description>RO, UART1 receiver FIFO count</description>
+				<addressOffset>0x0A</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R8_UART1_TFC</name>
+				<description>RO, UART1 transmitter FIFO count</description>
+				<addressOffset>0x0B</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R16_UART1_DL</name>
+				<description>RW, UART1 divisor latch</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_UART1_DIV</name>
+				<description>RW, UART1 pre-divisor latch byte, only low 7 bit, from 1 to 0/128</description>
+				<addressOffset>0x0E</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>UART2</name>
+		<description>UART2 register</description>
+		<groupName>UART</groupName>
+		<baseAddress>0x40003800</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>UART2</name>
+			<description>UART1_IRQHandler</description>
+			<value>17</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_UART2_MCR</name>
+				<description>RW, UART2 modem control</description>
+				<addressOffset>0x00</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_MCR_OUT2</name>
+						<description>RW, UART control OUT2</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART2_IER</name>
+				<description>RW, UART2 interrupt enable</description>
+				<addressOffset>0x01</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_IER_RECV_RDY</name>
+						<description>RW, UART interrupt enable for receiver data ready</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_THR_EMPTY</name>
+						<description>RW, UART interrupt enable for THR empty</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_LINE_STAT</name>
+						<description>RW, UART interrupt enable for receiver line status</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_TXD_EN</name>
+						<description>RW, UART TXD pin enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_RESET</name>
+						<description>WZ, UART software reset control, high action, auto clear</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART2_FCR</name>
+				<description>RW, UART2 FIFO control</description>
+				<addressOffset>0x02</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_FCR_FIFO_EN</name>
+						<description>RW, UART FIFO enable</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_FCR_RX_FIFO_CLR</name>
+						<description>WZ, clear UART receiver FIFO, high action, auto clear</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_FCR_TX_FIFO_CLR</name>
+						<description>WZ, clear UART transmitter FIFO, high action, auto clear</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_FCR_FIFO_TRIG</name>
+						<description>RW, UART receiver FIFO trigger level: 00-1byte, 01-2bytes, 10-4bytes, 11-7bytes</description>
+						<bitRange>[7:6]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART2_LCR</name>
+				<description>RW, UART2 line control</description>
+				<addressOffset>0x03</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_LCR_WORD_SZ</name>
+						<description>RW, UART word bit length: 00-5bit, 01-6bit, 10-7bit, 11-8bit</description>
+						<bitRange>[1:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_STOP_BIT</name>
+						<description>RW, UART stop bit length: 0-1bit, 1-2bit</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_PAR_EN</name>
+						<description>RW, UART parity enable</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_PAR_MOD</name>
+						<description>RW, UART parity mode: 00-odd, 01-even, 10-mark, 11-space</description>
+						<bitRange>[5:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_BREAK_EN</name>
+						<description>RW, UART break control enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_GP_BIT__RB_LCR_DLAB</name>
+						<description>RW, UART general purpose bit;RW, UART reserved bit</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART2_IIR</name>
+				<description>RO, UART2 interrupt identification</description>
+				<addressOffset>0x04</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_IIR_NO_INT</name>
+						<description>RO, UART no interrupt flag: 0=interrupt action, 1=no interrupt</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_IIR_INT_MASK</name>
+						<description>RO, UART interrupt flag bit mask</description>
+						<bitRange>[3:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_IIR_FIFO_ID</name>
+						<description>RO, UART FIFO enabled flag</description>
+						<bitRange>[7:7]</bitRange>
+					</field>				
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART2_LSR</name>
+				<description>RO, UART2 line status</description>
+				<addressOffset>0x05</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_LSR_DATA_RDY</name>
+						<description>RO, UART receiver fifo data ready status</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_OVER_ERR</name>
+						<description>RZ, UART receiver overrun error</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_PAR_ERR</name>
+						<description>RZ, UART receiver parity error</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_FRAME_ERR</name>
+						<description>RZ, UART receiver frame error</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_BREAK_ERR</name>
+						<description>RZ, UART receiver break error</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_TX_FIFO_EMP</name>
+						<description>RO, UART transmitter fifo empty status</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_TX_ALL_EMP</name>
+						<description>RO, UART transmitter all empty status</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_ERR_RX_FIFO</name>
+						<description>RO, indicate error in UART receiver fifo</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART2_RBR</name>
+				<description>RO, UART2 receiver buffer, receiving byte</description>
+				<addressOffset>0x08</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R8_UART2_THR</name>
+				<description>WO, UART2 transmitter holding, transmittal byte</description>
+				<addressOffset>0x08</addressOffset>
+				<size>8</size>
+				<access>write-only</access>
+			</register>
+			<register>
+				<name>R8_UART2_RFC</name>
+				<description>RO, UART2 receiver FIFO count</description>
+				<addressOffset>0x0A</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R8_UART2_TFC</name>
+				<description>RO, UART2 transmitter FIFO count</description>
+				<addressOffset>0x0B</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R16_UART2_DL</name>
+				<description>RW, UART2 divisor latch</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_UART2_DIV</name>
+				<description>RW, UART2 pre-divisor latch byte, only low 7 bit, from 1 to 0/128</description>
+				<addressOffset>0x0E</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>UART3</name>
+		<description>UART3 register</description>
+		<groupName>UART</groupName>
+		<baseAddress>0x40003C00</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>UART3</name>
+			<description>UART3_IRQHandler</description>
+			<value>18</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_UART3_MCR</name>
+				<description>RW, UART3 modem control</description>
+				<addressOffset>0x00</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_MCR_OUT2</name>
+						<description>RW, UART control OUT2</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART3_IER</name>
+				<description>RW, UART3 interrupt enable</description>
+				<addressOffset>0x01</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_IER_RECV_RDY</name>
+						<description>RW, UART interrupt enable for receiver data ready</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_THR_EMPTY</name>
+						<description>RW, UART interrupt enable for THR empty</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_LINE_STAT</name>
+						<description>RW, UART interrupt enable for receiver line status</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_TXD_EN</name>
+						<description>RW, UART TXD pin enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_IER_RESET</name>
+						<description>WZ, UART software reset control, high action, auto clear</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART3_FCR</name>
+				<description>RW, UART3 FIFO control</description>
+				<addressOffset>0x02</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_FCR_FIFO_EN</name>
+						<description>RW, UART FIFO enable</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_FCR_RX_FIFO_CLR</name>
+						<description>WZ, clear UART receiver FIFO, high action, auto clear</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_FCR_TX_FIFO_CLR</name>
+						<description>WZ, clear UART transmitter FIFO, high action, auto clear</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_FCR_FIFO_TRIG</name>
+						<description>RW, UART receiver FIFO trigger level: 00-1byte, 01-2bytes, 10-4bytes, 11-7bytes</description>
+						<bitRange>[7:6]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART3_LCR</name>
+				<description>RW, UART3 line control</description>
+				<addressOffset>0x03</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_LCR_WORD_SZ</name>
+						<description>RW, UART word bit length: 00-5bit, 01-6bit, 10-7bit, 11-8bit</description>
+						<bitRange>[1:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_STOP_BIT</name>
+						<description>RW, UART stop bit length: 0-1bit, 1-2bit</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_PAR_EN</name>
+						<description>RW, UART parity enable</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_PAR_MOD</name>
+						<description>RW, UART parity mode: 00-odd, 01-even, 10-mark, 11-space</description>
+						<bitRange>[5:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_BREAK_EN</name>
+						<description>RW, UART break control enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCR_GP_BIT__RB_LCR_DLAB</name>
+						<description>RW, UART general purpose bit;RW, UART reserved bit</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART3_IIR</name>
+				<description>RO, UART3 interrupt identification</description>
+				<addressOffset>0x04</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_IIR_NO_INT</name>
+						<description>RO, UART no interrupt flag: 0=interrupt action, 1=no interrupt</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_IIR_INT_MASK</name>
+						<description>RO, UART interrupt flag bit mask</description>
+						<bitRange>[3:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_IIR_FIFO_ID</name>
+						<description>RO, UART FIFO enabled flag</description>
+						<bitRange>[7:7]</bitRange>
+					</field>				
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART3_LSR</name>
+				<description>RO, UART3 line status</description>
+				<addressOffset>0x05</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_LSR_DATA_RDY</name>
+						<description>RO, UART receiver fifo data ready status</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_OVER_ERR</name>
+						<description>RZ, UART receiver overrun error</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_PAR_ERR</name>
+						<description>RZ, UART receiver parity error</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_FRAME_ERR</name>
+						<description>RZ, UART receiver frame error</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_BREAK_ERR</name>
+						<description>RZ, UART receiver break error</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_TX_FIFO_EMP</name>
+						<description>RO, UART transmitter fifo empty status</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_TX_ALL_EMP</name>
+						<description>RO, UART transmitter all empty status</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_LSR_ERR_RX_FIFO</name>
+						<description>RO, indicate error in UART receiver fifo</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UART3_RBR</name>
+				<description>RO, UART3 receiver buffer, receiving byte</description>
+				<addressOffset>0x08</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R8_UART3_THR</name>
+				<description>WO, UART3 transmitter holding, transmittal byte</description>
+				<addressOffset>0x08</addressOffset>
+				<size>8</size>
+				<access>write-only</access>
+			</register>
+			<register>
+				<name>R8_UART3_RFC</name>
+				<description>RO, UART3 receiver FIFO count</description>
+				<addressOffset>0x0A</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R8_UART3_TFC</name>
+				<description>RO, UART3 transmitter FIFO count</description>
+				<addressOffset>0x0B</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R16_UART3_DL</name>
+				<description>RW, UART3 divisor latch</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_UART3_DIV</name>
+				<description>RW, UART3 pre-divisor latch byte, only low 7 bit, from 1 to 0/128</description>
+				<addressOffset>0x0E</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>SPI0</name>
+		<description>SPI0 register</description>
+		<groupName>SPI</groupName>
+		<baseAddress>0x40004000</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>SPI0</name>
+			<description>SPI0_IRQHandler</description>
+			<value>3</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_SPI0_CTRL_MOD</name>
+				<description>RW, SPI0 mode control</description>
+				<addressOffset>0x00</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_SPI_MODE_SLAVE</name>
+						<description>RW, SPI0 slave mode: 0=master/host, 1=slave/device</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_ALL_CLEAR</name>
+						<description>RW, force clear SPI FIFO and count</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_2WIRE_MOD</name>
+						<description>RW, SPI0 enable 2 wire mode for slave: 0=3wire(SCK0,MOSI,MISO), 1=2wire(SCK0,MISO=MXSX)</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_MST_SCK_MOD__RB_SPI_SLV_CMD_MOD</name>
+						<description>RW, SPI master clock mode: 0=mode 0, 1=mode 3;RW, SPI0 slave command mode: 0=byte stream, 1=first byte command</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_FIFO_DIR</name>
+						<description>RW, SPI FIFO direction: 0=out(write @master mode), 1=in(read @master mode)</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_SCK_OE</name>
+						<description>RW, SPI SCK output enable</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_MOSI_OE</name>
+						<description>RW, SPI MOSI output enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_MISO_OE</name>
+						<description>RW, SPI MISO output enable</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>	
+			<register>
+				<name>R8_SPI0_CTRL_CFG</name>
+				<description>RW, SPI0 configuration control</description>
+				<addressOffset>0x01</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_SPI_DMA_ENABLE</name>
+						<description>RW, SPI0 DMA enable</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_DMA_LOOP</name>
+						<description>RW, SPI0 DMA address loop enable</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_AUTO_IF</name>
+						<description>RW, enable buffer/FIFO accessing to auto clear RB_SPI_IF_BYTE_END interrupt flag</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_BIT_ORDER</name>
+						<description>RW, SPI bit data order: 0=MSB first, 1=LSB first</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_MST_DLY_EN</name>
+						<description>RW, SPI master input delay enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_SPI0_INTER_EN</name>
+				<description>RW, SPI0 interrupt enable</description>
+				<addressOffset>0x02</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_SPI_IE_CNT_END</name>
+						<description>RW, enable interrupt for SPI total byte count end</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IE_BYTE_END</name>
+						<description>RW, enable interrupt for SPI byte exchanged</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IE_FIFO_HF</name>
+						<description>RW, enable interrupt for SPI FIFO half</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IE_DMA_END</name>
+						<description>RW, enable interrupt for SPI0 DMA completion</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IE_FIFO_OV</name>
+						<description>RW, enable interrupt for SPI0 FIFO overflow</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IE_FST_BYTE</name>
+						<description>RW, enable interrupt for SPI0 slave mode first byte received</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_SPI0_CLOCK_DIV__R8_SPI0_SLAVE_PRE</name>
+				<description>RW, SPI0 master clock divisor;RW, SPI0 slave preset value</description>
+				<addressOffset>0x03</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_SPI0_BUFFER</name>
+				<description>RW, SPI0 data buffer</description>
+				<addressOffset>0x04</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_SPI0_RUN_FLAG</name>
+				<description>RO, SPI0 work flag</description>
+				<addressOffset>0x05</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_SPI_SLV_CMD_ACT</name>
+						<description>RO, SPI0 slave first byte / command flag</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_FIFO_READY</name>
+						<description>RO, SPI FIFO ready status</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_SLV_CS_LOAD</name>
+						<description>RO, SPI0 slave chip-select loading status</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_SLV_SELECT</name>
+						<description>RO, SPI0 slave selection status</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_SPI0_INT_FLAG</name>
+				<description>RW1, SPI0 interrupt flag</description>
+				<addressOffset>0x06</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_SPI_IF_CNT_END</name>
+						<description>RW1, interrupt flag for SPI total byte count end</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IF_BYTE_END</name>
+						<description>RW1, interrupt flag for SPI byte exchanged</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IF_FIFO_HF</name>
+						<description>RW1, interrupt flag for SPI FIFO half (RB_SPI_FIFO_DIR ? >=4bytes :  less than 4bytes)</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IF_DMA_END</name>
+						<description>RW1, interrupt flag for SPI0 DMA completion</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IF_FIFO_OV</name>
+						<description>RW1, interrupt flag for SPI0 FIFO overflow</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_FREE</name>
+						<description>RO, current SPI free status</description>
+						<bitRange>[6:6]</bitRange>				
+					</field>
+					<field>
+						<name>RB_SPI_IF_FST_BYTE</name>
+						<description>RW1, interrupt flag for SPI0 slave mode first byte received</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_SPI0_FIFO_COUNT</name>
+				<description>RO, SPI0 FIFO count status</description>
+				<addressOffset>0x07</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R16_SPI0_TOTAL_CNT</name>
+				<description>RW, SPI0 total byte count, only low 12 bit</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_SPI0_FIFO</name>
+				<description>RO/WO, SPI0 FIFO register</description>
+				<addressOffset>0x10</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_SPI0_FIFO_COUNT1</name>
+				<description>RO, SPI0 FIFO count status</description>
+				<addressOffset>0x13</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R16_SPI0_DMA_NOW</name>
+				<description>RW, SPI0 DMA current address</description>
+				<addressOffset>0x14</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_SPI0_DMA_BEG</name>
+				<description>RW, SPI0 DMA begin address</description>
+				<addressOffset>0x18</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_SPI0_DMA_END</name>
+				<description>RW, SPI0 DMA end address</description>
+				<addressOffset>0x1C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>SPI1</name>
+		<description>SPI1 register</description>
+		<groupName>SPI</groupName>
+		<baseAddress>0x40004400</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>SPI1</name>
+			<description>SPI1_IRQHandler</description>
+			<value>14</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_SPI1_CTRL_MOD</name>
+				<description>RW, SPI1 mode control</description>
+				<addressOffset>0x00</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_SPI_ALL_CLEAR</name>
+						<description>RW, force clear SPI FIFO and count</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_MST_SCK_MOD__RB_SPI_SLV_CMD_MOD</name>
+						<description>RW, SPI master clock mode: 0=mode 0, 1=mode 3;RW, SPI0 slave command mode: 0=byte stream, 1=first byte command</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_FIFO_DIR</name>
+						<description>RW, SPI FIFO direction: 0=out(write @master mode), 1=in(read @master mode)</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_SCK_OE</name>
+						<description>RW, SPI SCK output enable</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_MOSI_OE</name>
+						<description>RW, SPI MOSI output enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_MISO_OE</name>
+						<description>RW, SPI MISO output enable</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>	
+			<register>
+				<name>R8_SPI1_CTRL_CFG</name>
+				<description>RW, SPI1 configuration control</description>
+				<addressOffset>0x01</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_SPI_DMA_ENABLE</name>
+						<description>RW, SPI0 DMA enable</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_AUTO_IF</name>
+						<description>RW, enable buffer/FIFO accessing to auto clear RB_SPI_IF_BYTE_END interrupt flag</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_BIT_ORDER</name>
+						<description>RW, SPI bit data order: 0=MSB first, 1=LSB first</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_MST_DLY_EN</name>
+						<description>RW, SPI master input delay enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_SPI1_INTER_EN</name>
+				<description>RW, SPI1 interrupt enable</description>
+				<addressOffset>0x02</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_SPI_IE_CNT_END</name>
+						<description>RW, enable interrupt for SPI total byte count end</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IE_BYTE_END</name>
+						<description>RW, enable interrupt for SPI byte exchanged</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IE_FIFO_HF</name>
+						<description>RW, enable interrupt for SPI FIFO half</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_SPI1_CLOCK_DIV</name>
+				<description>RW, SPI1 master clock divisor</description>
+				<addressOffset>0x03</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_SPI1_BUFFER</name>
+				<description>RW, SPI1 data buffer</description>
+				<addressOffset>0x04</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_SPI1_RUN_FLAG</name>
+				<description>RO, SPI1 work flag</description>
+				<addressOffset>0x05</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_SPI_FIFO_READY</name>
+						<description>RO, SPI FIFO ready status</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_SPI1_INT_FLAG</name>
+				<description>RW1, SPI1 interrupt flag</description>
+				<addressOffset>0x06</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_SPI_IF_CNT_END</name>
+						<description>RW1, interrupt flag for SPI total byte count end</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IF_BYTE_END</name>
+						<description>RW1, interrupt flag for SPI byte exchanged</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IF_FIFO_HF</name>
+						<description>RW1, interrupt flag for SPI FIFO half (RB_SPI_FIFO_DIR ? >=4bytes : less than 4bytes)</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_IF_FIFO_OV</name>
+						<description>RW1, interrupt flag for SPI FIFO overflow</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_SPI_FREE</name>
+						<description>RO, current SPI free status</description>
+						<bitRange>[6:6]</bitRange>				
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_SPI1_FIFO_COUNT</name>
+				<description>RO, SPI1 FIFO count status</description>
+				<addressOffset>0x07</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R16_SPI1_TOTAL_CNT</name>
+				<description>RW, SPI1 total byte count, only low 12 bit</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_SPI1_FIFO</name>
+				<description>RO/WO, SPI1 FIFO register</description>
+				<addressOffset>0x10</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_SPI1_FIFO_COUNT1</name>
+				<description>RO, SPI1 FIFO count status</description>
+				<addressOffset>0x13</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>PWMx</name>
+		<description>PWMx register</description>
+		<groupName>PWMx</groupName>
+		<baseAddress>0x40005000</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<registers>
+			<register>
+				<name>R8_PWM_OUT_EN</name>
+				<description>RW, PWM output enable control</description>
+				<addressOffset>0x00</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_PWM4_OUT_EN</name>
+						<description>RW, PWM4 output enable</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM5_OUT_EN</name>
+						<description>RW, PWM5 output enable</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM6_OUT_EN</name>
+						<description>RW, PWM6 output enable</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM7_OUT_EN</name>
+						<description>RW, PWM7 output enable</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM8_OUT_EN</name>
+						<description>RW, PWM8 output enable</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM9_OUT_EN</name>
+						<description>RW, PWM9 output enable</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM10_OUT_EN</name>
+						<description>RW, PWM10 output enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM11_OUT_EN</name>
+						<description>RW, PWM11 output enable</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_PWM_POLAR</name>
+				<description>RW, PWM output polarity control</description>
+				<addressOffset>0x01</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_PWM4_POLAR</name>
+						<description>RW, PWM4 output polarity: 0=default low and high action, 1=default high and low action</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM5_POLAR</name>
+						<description>RW, PWM5 output polarity: 0=default low and high action, 1=default high and low action</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM6_POLAR</name>
+						<description>RW, PWM6 output polarity: 0=default low and high action, 1=default high and low action</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM7_POLAR</name>
+						<description>RW, PWM7 output polarity: 0=default low and high action, 1=default high and low action</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM8_POLAR</name>
+						<description>RW, PWM8 output polarity: 0=default low and high action, 1=default high and low action</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM9_POLAR</name>
+						<description>RW, PWM9 output polarity: 0=default low and high action, 1=default high and low action</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM10_POLAR</name>
+						<description>RW, PWM10 output polarity: 0=default low and high action, 1=default high and low action</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM11_POLAR</name>
+						<description>RW, PWM11 output polarity: 0=default low and high action, 1=default high and low action</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_PWM_CONFIG</name>
+				<description>RW, PWM configuration</description>
+				<addressOffset>0x02</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_PWM_CYCLE_SEL</name>
+						<description>RW, PWM cycle selection: 0=256/128/64/32 clocks, 1=255/127/63/31 clocks</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM_STAG_ST</name>
+						<description>RO, PWM stagger cycle status</description>
+						<bitRange>[1:1]</bitRange>
+						<access>read-only</access>
+					</field>
+					<field>
+						<name>RB_PWM_CYC_MOD</name>
+						<description>RW, PWM data width mode: 00=8 bits data, 01=7 bits data, 10=6 bits data, 11=5 bits data</description>
+						<bitRange>[3:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM4_5_STAG_EN</name>
+						<description>RW, PWM4/5 stagger output enable: 0=independent output, 1=stagger output</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM6_7_STAG_EN</name>
+						<description>RW, PWM6/7 stagger output enable: 0=independent output, 1=stagger output</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM8_9_STAG_EN</name>
+						<description>RW, PWM8/9 stagger output enable: 0=independent output, 1=stagger output</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_PWM10_11_STAG_EN</name>
+						<description>RW, PWM10/11 stagger output enable: 0=independent output, 1=stagger output</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_PWM_CLOCK_DIV</name>
+				<description>RW, PWM clock divisor</description>
+				<addressOffset>0x03</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_PWM4_DATA</name>
+				<description>RW, PWM4 data holding</description>
+				<addressOffset>0x04</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_PWM5_DATA</name>
+				<description>RW, PWM5 data holding</description>
+				<addressOffset>0x05</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_PWM6_DATA</name>
+				<description>RW, PWM6 data holding</description>
+				<addressOffset>0x06</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_PWM7_DATA</name>
+				<description>RW, PWM7 data holding</description>
+				<addressOffset>0x07</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_PWM8_DATA</name>
+				<description>RW, PWM8 data holding</description>
+				<addressOffset>0x08</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_PWM9_DATA</name>
+				<description>RW, PWM9 data holding</description>
+				<addressOffset>0x09</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_PWM10_DATA</name>
+				<description>RW, PWM10 data holding</description>
+				<addressOffset>0x0A</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_PWM11_DATA</name>
+				<description>RW, PWM11 data holding</description>
+				<addressOffset>0x0B</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>LCD</name>
+		<description>LCD register</description>
+		<groupName>LCD</groupName>
+		<baseAddress>0x40006000</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<registers>
+			<register>
+				<name>R8_LCD_CTRL_MOD</name>
+				<description>R8_LCD_CTRL_MOD</description>
+				<addressOffset>0x00</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_SYS_POWER_ON</name>
+						<description>RW, LCD digital system enable</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCD_POWER_ON</name>
+						<description>RW, LCD analog system enable</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCD_BIAS</name>
+						<description>RW, LCD bias select:  0=1/2 bias,  1=1/3 bias</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCD_DUTY</name>
+						<description>RW, LCD duty select:  00=1/2 duty,  01=1/3 duty,  10=1/4 duty</description>
+						<bitRange>[4:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCD_SCAN_CLK</name>
+						<description>RW, LCD scan clock select: 00=256Hz, 01=512Hz, 10=1KHz, 11=128Hz</description>
+						<bitRange>[6:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_LCD_V_SEL</name>
+						<description>RW, LCD drive voltage:0=VIO33*100%(3.3V),1=VIO33*76%(2.5V)</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R32_LCD_RAM0</name>
+				<description>RW, LCD driver data0, address 0-3</description>
+				<addressOffset>0x04</addressOffset>
+				<size>32</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R32_LCD_RAM1</name>
+				<description>RW, LCD driver data1, address 4-7</description>
+				<addressOffset>0x08</addressOffset>
+				<size>32</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R32_LCD_RAM2</name>
+				<description>RW, LCD driver data2, address 8-12</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>32</size>
+				<access>read-write</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>LED</name>
+		<description>LED register</description>
+		<groupName>LED</groupName>
+		<baseAddress>0x40006400</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>LED</name>
+			<description>LED_IRQHandler</description>
+			<value>15</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_LED_CTRL_MOD</name>
+				<description>RW, LED mode control</description>
+				<addressOffset>0x00</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_LED_BIT_ORDER</name>
+						<description>RW, LED bit data order: 0=LSB first, 1=MSB first</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_LED_ALL_CLEAR</name>
+						<description>RW, force clear LED FIFO and count</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_LED_OUT_POLAR</name>
+						<description>RW, LED output polarity: 0=pass, 1=invert</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_LED_OUT_EN</name>
+						<description>RW, LED output enable</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_LED_DMA_EN</name>
+						<description>RW, LED DMA enable and DMA interrupt enable</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_LED_IE_FIFO</name>
+						<description>RW, enable interrupt for LED FIFO less than 2</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_LED_CHAN_MOD</name>
+						<description>RW, LED channel mode: 00=LED0, 01=LED0/1, 10=LED0~3, 11=LED0~3 and LED2/3 from auxiliary buffer</description>
+						<bitRange>[7:6]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_LED_CLOCK_DIV</name>
+				<description>RW, LED serial clock divisor</description>
+				<addressOffset>0x01</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_LED_STATUS</name>
+				<description>RO, LED status</description>
+				<addressOffset>0x04</addressOffset>
+				<size>8</size>
+				<fields>
+					<field>
+						<name>RB_LED_FIFO_COUNT</name>
+						<description>RO, LED FIFO byte count status, must divided by 2 for width half-word</description>
+						<bitRange>[2:0]</bitRange>
+						<access>read-only</access>
+					</field>
+					<field>
+						<name>RB_LED_CLOCK</name>
+						<description>RO, current LED clock level</description>
+						<bitRange>[4:4]</bitRange>
+						<access>read-only</access>
+					</field>
+					<field>
+						<name>RB_LED_IF_FIFO</name>
+						<description>RW1, interrupt flag for LED FIFO less than 2, cleared by RW1 or write R32/R16_LED_FIFO</description>
+						<bitRange>[5:5]</bitRange>
+						<access>read-write</access>
+					</field>
+					<field>
+						<name>RB_LED_FIFO_EMPTY</name>
+						<description>RO: indicate FIFO empty status</description>
+						<bitRange>[6:6]</bitRange>
+						<access>read-only</access>
+					</field>
+					<field>
+						<name>RB_LED_IF_DMA_END</name>
+						<description>RW1, interrupt flag for LED DMA completion, cleared by RW1 or write R32/R16_LED_DMA_CNT</description>
+						<bitRange>[7:7]</bitRange>
+						<access>read-write</access>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R16_LED_FIFO</name>
+				<description>WO, LED FIFO register, width is half-word</description>
+				<addressOffset>0x08</addressOffset>
+				<size>16</size>
+				<access>write-only</access>
+			</register>
+			<register>
+				<name>R16_LED_DMA_CNT</name>
+				<description>RW, LED DMA main buffer remainder half-word count, exclude auxiliary buffer, automatic decreasing after DMA, only low 12 bit</description>
+				<addressOffset>0x10</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_LED_DMA_MAIN</name>
+				<description>RW, LED main buffer DMA begin and current address, automatic increasing after DMA</description>
+				<addressOffset>0x14</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_LED_DMA_AUX</name>
+				<description>RW, LED auxiliary buffer DMA begin and current address, automatic increasing after DMA</description>
+				<addressOffset>0x18</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>USB</name>
+		<description>USB register</description>
+		<groupName>USB</groupName>
+		<baseAddress>0x40008000</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>USB</name>
+			<description>USB_IRQHandler</description>
+			<value>6</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_USB_CTRL</name>
+				<description>USB base control</description>
+				<addressOffset>0x00</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_UC_DMA_EN</name>
+						<description>DMA enable and DMA interrupt enable for USB</description>
+						<bitRange>[0:0]</bitRange>		
+					</field>
+					<field>
+						<name>RB_UC_CLR_ALL</name>
+						<description>force clear FIFO and count of USB</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_UC_RESET_SIE</name>
+						<description>force reset USB SIE, need software clear</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_UC_INT_BUSY</name>
+						<description>enable automatic responding busy for device mode or automatic pause for host mode during interrupt flag UIF_TRANSFER valid</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>MASK_UC_SYS_CTRL</name>
+						<description>bit mask of USB system control</description>
+						<bitRange>[5:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_UC_LOW_SPEED</name>
+						<description>enable USB low speed: 0=12Mbps, 1=1.5Mbps</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_UC_HOST_MODE</name>
+						<description>enable USB host mode: 0=device mode, 1=host mode</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UDEV_CTRL__R8_UHOST_CTRL</name>
+				<description>USB device physical prot control</description>
+				<addressOffset>0x01</addressOffset>
+				<size>8</size>
+				<fields>
+					<field>
+						<name>RB_UD_PORT_EN__RB_UH_PORT_EN</name>
+						<description>enable USB physical port I/O: 0=disable, 1=enable;enable USB port: 0=disable, 1=enable port, automatic disabled if USB device detached</description>
+						<bitRange>[0:0]</bitRange>
+						<access>read-write</access>
+					</field>
+					<field>
+						<name>RB_UD_GP_BIT__RB_UH_BUS_RESET</name>
+						<description>general purpose bit;control USB bus reset: 0=normal, 1=force bus reset</description>
+						<bitRange>[1:1]</bitRange>
+						<access>read-write</access>
+					</field>
+					<field>
+						<name>RB_UD_LOW_SPEED__RB_UH_LOW_SPEED</name>
+						<description>enable USB physical port low speed: 0=full speed, 1=low speed;enable USB port low speed: 0=full speed, 1=low speed</description>
+						<bitRange>[2:2]</bitRange>
+						<access>read-write</access>
+					</field>
+					<field>
+						<name>RB_UD_DM_PIN__RB_UH_DM_PIN</name>
+						<description>ReadOnly: indicate current UDM pin level</description>
+						<bitRange>[4:4]</bitRange>
+						<access>read-only</access>
+					</field>
+					<field>
+						<name>RB_UD_DP_PIN__RB_UH_DP_PIN</name>
+						<description>ReadOnly: indicate current UDP pin level</description>
+						<bitRange>[5:5]</bitRange>
+						<access>read-only</access>
+					</field>
+					<field>
+						<name>RB_UD_PD_DIS__RB_UH_PD_DIS</name>
+						<description>disable USB UDP/UDM pulldown resistance: 0=enable pulldown, 1=disable</description>
+						<bitRange>[7:7]</bitRange>
+						<access>read-only</access>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_USB_INT_EN</name>
+				<description>USB interrupt enable</description>
+				<addressOffset>0x02</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_UIE_BUS_RST__RB_UIE_DETECT</name>
+						<description>enable interrupt for USB bus reset event for USB device mode;enable interrupt for USB device detected event for USB host mode</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_UIE_TRANSFER</name>
+						<description>enable interrupt for USB transfer completion</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_UIE_SUSPEND</name>
+						<description>enable interrupt for USB suspend or resume event</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_UIE_HST_SOF</name>
+						<description>enable interrupt for host SOF timer action for USB host mode</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_UIE_FIFO_OV</name>
+						<description>enable interrupt for FIFO overflow</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_UIE_DEV_NAK</name>
+						<description>enable interrupt for NAK responded for USB device mode</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_UIE_DEV_SOF</name>
+						<description>enable interrupt for SOF received for USB device mode</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_USB_DEV_AD</name>
+				<description>USB device address</description>
+				<addressOffset>0x03</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>MASK_USB_ADDR</name>
+						<description>bit mask for USB device address</description>
+						<bitRange>[6:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_UDA_GP_BIT</name>
+						<description>general purpose bit</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_USB_MIS_ST</name>
+				<description>USB miscellaneous status</description>
+				<addressOffset>0x05</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_UMS_DEV_ATTACH</name>
+						<description>RO, indicate device attached status on USB host</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_UMS_DM_LEVEL</name>
+						<description>RO, indicate UDM level saved at device attached to USB host</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_UMS_SUSPEND</name>
+						<description>RO, indicate USB suspend status</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_UMS_BUS_RESET</name>
+						<description>RO, indicate USB bus reset status</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_UMS_R_FIFO_RDY</name>
+						<description>RO, indicate USB receiving FIFO ready status (not empty)</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_UMS_SIE_FREE</name>
+						<description>RO, indicate USB SIE free status</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_UMS_SOF_ACT</name>
+						<description>RO, indicate host SOF timer action status for USB host</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_UMS_SOF_PRES</name>
+						<description>RO, indicate host SOF timer presage status</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_USB_INT_FG</name>
+				<description>USB interrupt flag</description>
+				<addressOffset>0x06</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_UIF_BUS_RST__RB_UIF_DETECT</name>
+						<description>bus reset event interrupt flag for USB device mode, direct bit address clear or write 1 to clear;device detected event interrupt flag for USB host mode, direct bit address clear or write 1 to clear</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_UIF_TRANSFER</name>
+						<description>USB transfer completion interrupt flag, direct bit address clear or write 1 to clear</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_UIF_SUSPEND</name>
+						<description>USB suspend or resume event interrupt flag, direct bit address clear or write 1 to clear</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_UIF_HST_SOF</name>
+						<description>host SOF timer interrupt flag for USB host, direct bit address clear or write 1 to clear</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_UIF_FIFO_OV</name>
+						<description>FIFO overflow interrupt flag for USB, direct bit address clear or write 1 to clear</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_U_SIE_FREE</name>
+						<description>RO, indicate USB SIE free status</description>
+						<bitRange>[5:5]</bitRange>
+						<access>read-only</access>
+					</field>
+					<field>
+						<name>RB_U_TOG_OK</name>
+						<description>RO, indicate current USB transfer toggle is OK</description>
+						<bitRange>[6:6]</bitRange>
+						<access>read-only</access>
+					</field>
+					<field>
+						<name>RB_U_IS_NAK</name>
+						<description>RO, indicate current USB transfer is NAK received</description>
+						<bitRange>[7:7]</bitRange>
+						<access>read-only</access>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_USB_INT_ST</name>
+				<description>USB interrupt status</description>
+				<addressOffset>0x07</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>MASK_UIS_H_RES__MASK_UIS_ENDP</name>
+						<description>RO, bit mask of current transfer handshake response for USB host mode: 0000=no response, time out from device, others=handshake response PID received;RO, bit mask of current transfer endpoint number for USB device mode</description>
+						<bitRange>[3:0]</bitRange>
+					</field>
+					<field>
+						<name>MASK_UIS_TOKEN</name>
+						<description>RO, bit mask of current token PID code received for USB device mode</description>
+						<bitRange>[5:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_UIS_TOG_OK</name>
+						<description>RO, indicate current USB transfer toggle is OK</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_UIS_IS_NAK</name>
+						<description>RO, indicate current USB transfer is NAK received for USB device mode</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_USB_RX_LEN</name>
+				<description>USB receiving length</description>
+				<addressOffset>0x08</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R8_UEP4_1_MOD</name>
+				<description>endpoint 4/1 mode</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_UEP4_TX_EN</name>
+						<description>enable USB endpoint 4 transmittal (IN)</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP4_RX_EN</name>
+						<description>enable USB endpoint 4 receiving (OUT)</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP1_BUF_MOD</name>
+						<description>buffer mode of USB endpoint 1</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP1_TX_EN</name>
+						<description>enable USB endpoint 1 transmittal (IN)</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP1_RX_EN</name>
+						<description>enable USB endpoint 1 receiving (OUT)</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UEP2_3_MOD__R8_UH_EP_MOD</name>
+				<description>endpoint 2/3 mode;host endpoint mode</description>
+				<addressOffset>0x0D</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_UEP2_BUF_MOD__RB_UH_EP_RBUF_MOD</name>
+						<description>buffer mode of USB endpoint 2;buffer mode of USB host IN endpoint</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP2_TX_EN</name>
+						<description>enable USB endpoint 2 transmittal (IN)</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP2_RX_EN__RB_UH_EP_RX_EN</name>
+						<description>enable USB endpoint 2 receiving (OUT);enable USB host IN endpoint receiving</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP3_BUF_MOD__RB_UH_EP_TBUF_MOD</name>
+						<description>buffer mode of USB endpoint 3;buffer mode of USB host OUT endpoint</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP3_TX_EN__RB_UH_EP_TX_EN</name>
+						<description>enable USB endpoint 3 transmittal (IN);enable USB host OUT endpoint transmittal</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP3_RX_EN</name>
+						<description>enable USB endpoint 3 receiving (OUT)</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R16_UEP0_DMA</name>
+				<description>endpoint 0 DMA buffer address</description>
+				<addressOffset>0x10</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_UEP1_DMA</name>
+				<description>endpoint 1 DMA buffer address</description>
+				<addressOffset>0x14</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_UEP2_DMA__R16_UH_RX_DMA</name>
+				<description>endpoint 2 DMA buffer address;host rx endpoint buffer high address</description>
+				<addressOffset>0x18</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_UEP3_DMA__R16_UH_TX_DMA</name>
+				<description>endpoint 3 DMA buffer address;host tx endpoint buffer high address</description>
+				<addressOffset>0x1C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_UEP0_T_LEN</name>
+				<description>endpoint 0 transmittal length</description>
+				<addressOffset>0x20</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_UEP0_CTRL</name>
+				<description>endpoint 0 control</description>
+				<addressOffset>0x22</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>MASK_UEP_T_RES</name>
+						<description>bit mask of handshake response type for USB endpoint X transmittal (IN)</description>
+						<bitRange>[1:0]</bitRange>
+					</field>
+					<field>
+						<name>MASK_UEP_R_RES</name>
+						<description>bit mask of handshake response type for USB endpoint X receiving (OUT)</description>
+						<bitRange>[3:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_AUTO_TOG</name>
+						<description>enable automatic toggle after successful transfer completion on endpoint 1/2/3: 0=manual toggle, 1=automatic toggle</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_T_TOG</name>
+						<description>prepared data toggle flag of USB endpoint X transmittal (IN): 0=DATA0, 1=DATA1</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_R_TOG</name>
+						<description>expected data toggle flag of USB endpoint X receiving (OUT): 0=DATA0, 1=DATA1</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UEP1_T_LEN</name>
+				<description>endpoint 1 transmittal length</description>
+				<addressOffset>0x24</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_UEP1_CTRL__R8_UH_SETUP</name>
+				<description>endpoint 1 control;host aux setup</description>
+				<addressOffset>0x26</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>MASK_UEP_T_RES</name>
+						<description>bit mask of handshake response type for USB endpoint X transmittal (IN)</description>
+						<bitRange>[1:0]</bitRange>
+					</field>
+					<field>
+						<name>MASK_UEP_R_RES</name>
+						<description>bit mask of handshake response type for USB endpoint X receiving (OUT)</description>
+						<bitRange>[3:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_AUTO_TOG</name>
+						<description>enable automatic toggle after successful transfer completion on endpoint 1/2/3: 0=manual toggle, 1=automatic toggle</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_T_TOG__RB_UH_SOF_EN</name>
+						<description>prepared data toggle flag of USB endpoint X transmittal (IN): 0=DATA0, 1=DATA1;USB host automatic SOF enable</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_R_TOG__RB_UH_PRE_PID_EN</name>
+						<description>expected data toggle flag of USB endpoint X receiving (OUT): 0=DATA0, 1=DATA1;RB_UH_PRE_PID_EN;USB host PRE PID enable for low speed device via hub</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UEP2_T_LEN__R8_UH_EP_PID</name>
+				<description>endpoint 2 transmittal length;host endpoint and PID</description>
+				<addressOffset>0x28</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>MASK_UH_ENDP</name>
+						<description>bit mask of endpoint number for USB host transfer</description>
+						<bitRange>[3:0]</bitRange>
+					</field>
+					<field>
+						<name>MASK_UH_TOKEN</name>
+						<description>bit mask of token PID for USB host transfer</description>
+						<bitRange>[7:4]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UEP2_CTRL__R8_UH_RX_CTRL</name>
+				<description>endpoint 2 control;host receiver endpoint control</description>
+				<addressOffset>0x2A</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>MASK_UEP_T_RES</name>
+						<description>bit mask of handshake response type for USB endpoint X transmittal (IN)</description>
+						<bitRange>[1:0]</bitRange>
+					</field>
+					<field>
+						<name>MASK_UEP_R_RES</name>
+						<description>bit mask of handshake response type for USB endpoint X receiving (OUT)</description>
+						<bitRange>[3:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_AUTO_TOG__RB_UH_R_AUTO_TOG</name>
+						<description>enable automatic toggle after successful transfer completion on endpoint 1/2/3: 0=manual toggle, 1=automatic toggle;enable automatic toggle after successful transfer completion: 0=manual toggle, 1=automatic toggle</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_T_TOG</name>
+						<description>prepared data toggle flag of USB endpoint X transmittal (IN): 0=DATA0, 1=DATA1</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_R_TOG__RB_UH_R_TOG</name>
+						<description>expected data toggle flag of USB endpoint X receiving (OUT): 0=DATA0, 1=DATA1;expected data toggle flag of host receiving (IN): 0=DATA0, 1=DATA1</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UEP3_T_LEN__R8_UH_TX_LEN</name>
+				<description>endpoint 3 transmittal length;host transmittal endpoint transmittal length</description>
+				<addressOffset>0x2C</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_UEP3_CTRL__R8_UH_TX_CTRL</name>
+				<description>endpoint 3 control;host transmittal endpoint control</description>
+				<addressOffset>0x2E</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>MASK_UEP_T_RES</name>
+						<description>bit mask of handshake response type for USB endpoint X transmittal (IN)</description>
+						<bitRange>[1:0]</bitRange>
+					</field>
+					<field>
+						<name>MASK_UEP_R_RES</name>
+						<description>bit mask of handshake response type for USB endpoint X receiving (OUT)</description>
+						<bitRange>[3:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_AUTO_TOG</name>
+						<description>enable automatic toggle after successful transfer completion on endpoint 1/2/3: 0=manual toggle, 1=automatic toggle</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_T_TOG</name>
+						<description>prepared data toggle flag of USB endpoint X transmittal (IN): 0=DATA0, 1=DATA1</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_R_TOG</name>
+						<description>expected data toggle flag of USB endpoint X receiving (OUT): 0=DATA0, 1=DATA1</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_UEP4_T_LEN</name>
+				<description>endpoint 4 transmittal length</description>
+				<addressOffset>0x30</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_UEP4_CTRL</name>
+				<description>endpoint 4 control</description>
+				<addressOffset>0x32</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>MASK_UEP_T_RES</name>
+						<description>bit mask of handshake response type for USB endpoint X transmittal (IN)</description>
+						<bitRange>[1:0]</bitRange>
+					</field>
+					<field>
+						<name>MASK_UEP_R_RES</name>
+						<description>bit mask of handshake response type for USB endpoint X receiving (OUT)</description>
+						<bitRange>[3:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_AUTO_TOG</name>
+						<description>enable automatic toggle after successful transfer completion on endpoint 1/2/3: 0=manual toggle, 1=automatic toggle</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_T_TOG</name>
+						<description>prepared data toggle flag of USB endpoint X transmittal (IN): 0=DATA0, 1=DATA1</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_UEP_R_TOG</name>
+						<description>expected data toggle flag of USB endpoint X receiving (OUT): 0=DATA0, 1=DATA1</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_USB_TYPE_C_CTRL</name>
+				<description>USB type-C control</description>
+				<addressOffset>0x38</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_UCC1_PU_EN</name>
+						<description>USB CC1 pullup resistance control</description>
+						<bitRange>[1:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_UCC1_PD_EN</name>
+						<description>USB CC1 5.1K pulldown resistance: 0=disable, 1=enable pulldown</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_VBUS_PD_EN</name>
+						<description>USB VBUS 10K pulldown resistance: 0=disable, 1=enable pullup</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_UCC2_PU_EN</name>
+						<description>USB CC2 pullup resistance control</description>
+						<bitRange>[5:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_UCC2_PD_EN</name>
+						<description>USB CC2 5.1K pulldown resistance: 0=disable, 1=enable pulldown</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_UTCC_GP_BIT</name>
+						<description>USB general purpose bit</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+		</registers>
+	</peripheral>
+	<peripheral>
+		<name>ETH</name>
+		<description>ETH register</description>
+		<groupName>ETH</groupName>
+		<baseAddress>0x40009000</baseAddress>
+		<addressBlock>
+			<offset>0x00</offset>
+			<size>0x400</size>
+			<usage>registers</usage>
+		</addressBlock>
+		<interrupt>
+			<name>ETH</name>
+			<description>ETH_IRQHandler</description>
+			<value>7</value>
+		</interrupt>
+		<registers>
+			<register>
+				<name>R8_ETH_EIE</name>
+				<description>soso</description>
+				<addressOffset>0x03</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_ETH_EIE_RXERIE</name>
+						<description>soso</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_EIE_TXERIE</name>
+						<description>soso</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_EIE_R_EN50</name>
+						<description>soso</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_EIE_TXIE</name>
+						<description>soso</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_EIE_LINKIE</name>
+						<description>soso</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_EIE_RXIE</name>
+						<description>soso</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_EIE_INTIE</name>
+						<description>soso</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_ETH_EIR</name>
+				<description>soso</description>
+				<addressOffset>0x04</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_ETH_EIR_RXERIF</name>
+						<description>soso</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_EIR_TXERIF</name>
+						<description>soso</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_EIR_TXIF</name>
+						<description>soso</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_EIR_LINKIF</name>
+						<description>soso</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_EIR_RXIF</name>
+						<description>soso</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_ETH_ESTAT</name>
+				<description>soso</description>
+				<addressOffset>0x05</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+				<fields>
+					<field>
+						<name>RB_ETH_ESTAT_TXABRT</name>
+						<description>soso</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ESTAT_RXBUSY</name>
+						<description>soso</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ESTAT_RXMORE</name>
+						<description>soso</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ESTAT_RXNIBBLE</name>
+						<description>soso</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ESTAT_RXCRCER</name>
+						<description>soso</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ESTAT_BUFER</name>
+						<description>soso</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ESTAT_INT</name>
+						<description>soso</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_ETH_ECON2</name>
+				<description>soso</description>
+				<addressOffset>0x06</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_ETH_ECON2_TX</name>
+						<description>soso</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ECON2_RX</name>
+						<description>soso</description>
+						<bitRange>[3:1]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_ETH_ECON1</name>
+				<description>soso</description>
+				<addressOffset>0x07</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_ETH_ECON1_RXEN</name>
+						<description>soso</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ECON1_TXRTS</name>
+						<description>soso</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ECON1_RXRST</name>
+						<description>soso</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ECON1_TXRST</name>
+						<description>soso</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R16_ETH_ETXST</name>
+				<description>soso</description>
+				<addressOffset>0x08</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_ETH_ETXLN</name>
+				<description>soso</description>
+				<addressOffset>0x0A</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_ETH_ERXST</name>
+				<description>soso</description>
+				<addressOffset>0x0C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_ETH_ERXLN</name>
+				<description>soso</description>
+				<addressOffset>0x0E</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register> 
+			<register>
+				<name>R8_ETH_EHT0</name>
+				<description>soso</description>
+				<addressOffset>0x10</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_ETH_EHT1</name>
+				<description>soso</description>
+				<addressOffset>0x11</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_ETH_EHT2</name>
+				<description>soso</description>
+				<addressOffset>0x12</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_ETH_EHT3</name>
+				<description>soso</description>
+				<addressOffset>0x13</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_ETH_EHT4</name>
+				<description>soso</description>
+				<addressOffset>0x14</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_ETH_EHT5</name>
+				<description>soso</description>
+				<addressOffset>0x15</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_ETH_EHT6</name>
+				<description>soso</description>
+				<addressOffset>0x16</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_ETH_EHT7</name>
+				<description>soso</description>
+				<addressOffset>0x17</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_ETH_ERXFCON</name>
+				<description>soso</description>
+				<addressOffset>0x18</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_ETH_ERXFCON_BCEN</name>
+						<description>soso</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ERXFCON_MCEN</name>
+						<description>soso</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ERXFCON_HTEN</name>
+						<description>soso</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ERXFCON_MPEN</name>
+						<description>soso</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ERXFCON_CRCEN</name>
+						<description>soso</description>
+						<bitRange>[5:5]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ERXFCON_ANDOR</name>
+						<description>soso</description>
+						<bitRange>[6:6]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_ERXFCON_UCEN</name>
+						<description>soso</description>
+						<bitRange>[7:7]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_ETH_MACON1</name>
+				<description>soso</description>
+				<addressOffset>0x19</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_ETH_MACON1_MARXEN</name>
+						<description>soso</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_MACON1_PASSALL</name>
+						<description>soso</description>
+						<bitRange>[1:1]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_MACON1_RXPAUS</name>
+						<description>soso</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_MACON1_TXPAUS</name>
+						<description>soso</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_MACON1_FCEN</name>
+						<description>soso</description>
+						<bitRange>[5:4]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_ETH_MACON2</name>
+				<description>soso</description>
+				<addressOffset>0x1A</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_ETH_MACON2_FULDPX</name>
+						<description>soso</description>
+						<bitRange>[0:0]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_MACON2_HFRMEN</name>
+						<description>soso</description>
+						<bitRange>[2:2]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_MACON2_PHDREN</name>
+						<description>soso</description>
+						<bitRange>[3:3]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_MACON2_TXCRCEN</name>
+						<description>soso</description>
+						<bitRange>[4:4]</bitRange>
+					</field>
+					<field>
+						<name>RB_ETH_MACON2_PADCFG</name>
+						<description>soso</description>
+						<bitRange>[7:5]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_ETH_MABBIPG</name>
+				<description>soso</description>
+				<addressOffset>0x1B</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_ETH_MABBIPG_MABBIPG</name>
+						<description>soso</description>
+						<bitRange>[6:0]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R16_ETH_EPAUS</name>
+				<description>soso</description>
+				<addressOffset>0x1C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_ETH_MAMXFL</name>
+				<description>soso</description>
+				<addressOffset>0x1E</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_ETH_MIRD</name>
+				<description>soso</description>
+				<addressOffset>0x20</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R8_ETH_MIREGADR</name>
+				<description>soso</description>
+				<addressOffset>0x24</addressOffset>
+				<size>8</size>
+				<access>read-write</access>
+				<fields>
+					<field>
+						<name>RB_ETH_MIREGADR_MASK</name>
+						<description>soso</description>
+						<bitRange>[4:0]</bitRange>
+					</field>
+				</fields>
+			</register>
+			<register>
+				<name>R8_ETH_MISTAT</name>
+				<description>soso</description>
+				<addressOffset>0x25</addressOffset>
+				<size>8</size>
+				<access>read-only</access>
+			</register>
+			<register>
+				<name>R16_ETH_MIWR</name>
+				<description>soso</description>
+				<addressOffset>0x26</addressOffset>
+				<size>16</size>
+				<access>write-only</access>
+			</register>
+			<register>
+				<name>R32_ETH_MAADRL</name>
+				<description>soso</description>
+				<addressOffset>0x28</addressOffset>
+				<size>32</size>
+				<access>read-write</access>
+			</register>
+			<register>
+				<name>R16_ETH_MAADRH</name>
+				<description>soso</description>
+				<addressOffset>0x2C</addressOffset>
+				<size>16</size>
+				<access>read-write</access>
+			</register>
+		</registers>
+	</peripheral>
+</peripherals>
+    <!-- <peripheral derivedFrom="TIMER0"> -->
+      <!-- <name>TIMER1</name> -->
+      <!-- <baseAddress>0x40010100</baseAddress> -->
+      <!-- <interrupt> -->
+        <!-- <name>TIMER1</name> -->
+        <!-- <value>4</value> -->
+      <!-- </interrupt> -->
+    <!-- </peripheral> -->
+
+
+    <!-- <peripheral derivedFrom="TIMER0"> -->
+      <!-- <name>TIMER2</name> -->
+      <!-- <baseAddress>0x40010200</baseAddress> -->
+      <!-- <interrupt> -->
+        <!-- <name>TIMER2</name> -->
+        <!-- <value>6</value> -->
+      <!-- </interrupt> -->
+    <!-- </peripheral> -->
+ 
+</device>

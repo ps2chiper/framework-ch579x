@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>WCH57x_DFP</name>
+  <description> WCH wireless MCU CH57x Family Support, Drivers and Examples</description>
+  <url>http://wch.cn/pack</url>
+  <supportContact>tech@wch.cn</supportContact>
+  <!-- optional license file -->
+  <!-- <license>Documentation/license.txt</license> -->
+
+  
+  <releases>
+    <release version="1.0.0" date ="2019-08-20">
+       add CH577
+    </release>
+	<release version="1.0.0" date ="2019-08-20">
+       add CH578
+    </release>
+	<release version="1.1.0" date ="2019-08-21">
+      Startup files included
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>WCH</keyword>
+	<keyword>CH57x</keyword>
+  </keywords>
+
+  <!-- apis section (optional - for Application Programming Interface descriptions) -->
+  <!-- 
+  <apis>
+  </apis>
+  -->
+
+  <!-- boards section (mandatory for Board Support Packs) -->
+  <!-- 
+  <boards>
+  </boards>
+  -->
+  <boards>
+    <board vendor="Keil" name="CH579-EVT" revision="V1" salesContact="sales@wch.cn">
+      <description>WCH Board Description</description>
+      <mountedDevice    deviceIndex="0" Dvendor="WCH:185" Dname="CH579M_48QFN"/>	
+	  <feature type="IOs" n="20"/>
+	 </board>
+  </boards>
+   <boards>
+    <board vendor="Keil" name="CH579-Bluetooth" revision="V1" salesContact="sales@wch.cn">
+      <description>WCH Board Description</description>
+      <mountedDevice    deviceIndex="0" Dvendor="WCH:185" Dname="CH579M_48QFN"/>	
+	  <feature type="IOs" n="20"/>
+	 </board>
+  </boards>
+  <!-- devices section (mandatory for Device Family Packs) -->
+  
+  <devices>
+	<family Dfamily="CH57x Series" Dvendor="WCH:185">
+		<processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+		<description>
+			The CH57x series is an ARM core 32-bit low power microcontroller with integrated BLE and ZigBee dual-mode wireless communication. On-chip integration of low-power Bluetooth BLE, ZigBee, Ethernet, full-speed USB master-slave, LCD driver, ADC, TouchKey, RTC and other rich peripheral resources.
+		</description>		
+		<book    name="Documentation/dui0497a_cortex_m0_r0p0_generic_ug.pdf"   title="Cortex-M0 Generic User Guide"/>  
+		<algorithm name="CMSIS/Flash/CH57x.FLM" start="0x00000000" size="0x3F000" default="1"/>		
+		<processor  Dclock="40000000"/>
+		<compile header="Drivers/CMSIS/Device/WCH/CH57x/Include/CH579SFR.h"/>
+		<debug   svd="CMSIS/SVD/CH579SFR.svd"/>
+			   
+   <!-- ************************  Sub-family 'CH579'  **************************** -->
+		<subFamily DsubFamily="CH579">
+			
+			<book    name="Documentation/CH579DS1.PDF"        title="CH579 Datasheet"/>    	  	  
+      <!-- *************************  Device 'MVCM3120'  ***************************** -->
+			<device Dname="CH579F_28QFN">
+				<memory     id="IROM1"         start="0x00000000"  size="0x3E800"     startup="1"   default="1"/>
+				<memory     id="IRAM1"         start="0x20000000"  size="0x8000"      init   ="0"   default="1"/>		
+				<variant Dvariant="CH579F">
+					<feature type="IOs" n="20"/>
+					<feature type="QFN" n="28" name="QFN"/>
+				</variant>
+			</device>
+			<device Dname="CH579M_48QFN">
+				<memory     id="IROM1"         start="0x00000000"  size="0x3E800"     startup="1"   default="1"/>
+				<memory     id="IRAM1"         start="0x20000000"  size="0x8000"      init   ="0"   default="1"/>		
+				<variant Dvariant="CH579M">
+					<feature type="IOs" n="40"/>
+					<feature type="QFN" n="48" name="QFN"/>	
+				</variant>				
+			</device>
+		</subFamily>
+		<subFamily DsubFamily="CH578">
+			<processor  Dclock="40000000"/>
+			<compile header="Drivers/CMSIS/Device/WCH/CH57x/Include/CH579SFR.h" />
+			<!-- <debug   svd="SVD\CH579.svd"/> -->
+			<!-- <algorithm name="Flash\CH579.FLM" start="0x00000000" size="0x3E800" default="1"/> -->
+			<book    name="Documentation/CH578DS1.PDF"        title="CH578/CH577 Datasheet"/> 
+			<device Dname="CH578M_48QFN">
+				<memory     id="IROM1"         start="0x00000000"  size="0x28000"     startup="1"   default="1"/>
+				<memory     id="IRAM1"         start="0x20000000"  size="0x4000"      init   ="0"   default="1"/>		
+				<variant Dvariant="CH578M">	
+					<feature type="IOs" n="40"/>
+					<feature type="QFN" n="48" name="48QFN"/>
+				</variant>
+			</device>
+		</subFamily>
+		<subFamily DsubFamily="CH577">
+		<processor  Dclock="40000000"/>
+			<compile header="Drivers/CMSIS/Device/WCH/CH57x/Include/CH579SFR.h" define="DEBUG"/>
+			<!-- <debug   svd="SVD\CH579.svd"/> -->
+			<!-- <algorithm name="Flash\CH579.FLM" start="0x00000000" size="0x3E800" default="1"/> -->
+			<book    name="Documentation/CH578DS1.PDF"        title="CH578/CH577 Datasheet"/> 
+			<device Dname="CH577F_28QFN">
+				<memory     id="IROM1"         start="0x00000000"  size="0x28000"     startup="1"   default="1"/>
+				<memory     id="IRAM1"         start="0x20000000"  size="0x4000"      init   ="0"   default="1"/>		
+				<variant Dvariant="CH577F">		
+					<feature type="IOs" n="20"/>
+					<feature type="QFN" n="48" name="QFN"/>	
+				</variant>					
+			</device>
+		</subFamily>
+	</family>
+  </devices>
+ 
+
+  <!-- examples section (optional for all Software Packs)-->
+  <!--
+  -->
+  
+  <!-- conditions section (optional for all Software Packs)-->
+  <conditions>
+	<condition id="CH57x">
+      <description>WCH CH57x Series devices</description>
+      <require Dvendor="WCH:185" Dname="CH57[789]*"/>
+    </condition>
+	
+    <condition id="CH57x CMSIS">
+      <!-- conditions selecting Devices -->
+      <description>WCH CH57x Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require condition="CH57x"/>
+	  <!-- <accept  Dname="CH57[987]*"/> -->
+    </condition>
+    <condition id="Startup ARM">
+      <description>Startup assembler file for ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+	  <require condition="CH57x"/>
+    </condition>
+    <condition id="Startup GCC">
+      <description>Startup assembler file for GCC</description>
+      <require Tcompiler="GCC"/>
+	  <require condition="CH57x"/>
+    </condition>
+    <condition id="Startup IAR">
+      <description>Startup assembler file for IAR</description>
+      <require Tcompiler="IAR"/>
+	  <require condition="CH57x"/>
+    </condition>
+	<condition id="Device COMMON">
+      <description>COMMON FILE</description>
+      <require Cclass="Device" Cgroup="Common" />
+	  <require Cclass="Device" Cgroup="Startup" />
+    </condition>
+	<condition id="Device USBHOSTBASE">
+      <description>USBHOSTBASE FILE</description>
+      <require Cclass="Device" Cgroup="USBhostBase" />
+    </condition>
+	<condition id="BLE Lib">
+      <description>Bluetooth FILE</description>
+      <require Cclass="Bluetooth" Cgroup="Common File" />
+	  <require Cclass="Device" Cgroup="Common" />
+	  <require Cclass="Device" Cgroup="StdPeriphDriver" Csub="PWR" />
+	  <require Cclass="Device" Cgroup="SYS"  />
+    </condition>
+  </conditions> 
+  
+  
+  <!-- component section (optional for all Software Packs)config属性是可以更改内容的-->
+  <components>
+	<component Cclass="Device" Cgroup="Startup"      						Cversion="1.1.0" condition="CH57x CMSIS">
+      <description>System Startup for WCH CH57x Series</description>
+      <files>
+         <!-- include folder  -->
+		<file category="include" name="Drivers/CMSIS/Device/WCH/CH57x/Include/"/>
+	    
+		<file category="source" condition="Startup ARM" name="Drivers/CMSIS/Device/WCH/CH57x/Source/ARM/startup_CH579.s" attr="config"  version="1.1.0"/>
+		<file category="source" condition="Startup GCC" name="Drivers/CMSIS/Device/WCH/CH57x/Source/GCC/startup_CH579.S" attr="config"  version="1.1.0"/>
+		<file category="source" condition="Startup IAR" name="Drivers/CMSIS/Device/WCH/CH57x/Source/IAR/startup_CH579.s" attr="config"  version="1.1.0"/>
+        <file category="header"  name="Drivers/CMSIS/Device/WCH/CH57x/Include/system_clk.h" />
+		<file category="source"  name="Drivers/CMSIS/Device/WCH/CH57x/Source/system_clk.c" attr="config" version="1.1.0"/>
+      </files>
+	</component>
+	<component Cclass="Device" Cgroup="Common" 								Cversion="1.1.0" condition="CH57x CMSIS">
+      <description>Common HAL driver</description>
+      <files>
+        <file category="include" name="Drivers/CH57x_Driver/Inc/"/>
+		<file category="header"  name="Drivers/CH57x_Driver/Inc/CH579SFR.h"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="USBhostBase" 						Cversion="1.1.0" condition="Device COMMON">
+      <description>USB Peripheral controller (PCD) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_usbhostBase.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="GPIO"  								Cversion="1.1.0" condition="Device COMMON">
+      <description>General-purpose I/O (GPIO) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_gpio.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="StdPeriphDriver" Csub="ADC" 			Cversion="1.1.0" condition="Device COMMON">
+      <description>Analog-to-digital converter (ADC) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_adc.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="StdPeriphDriver" Csub="FLASH" 		Cversion="1.1.0" condition="Device COMMON">
+      <description>Embedded Flash memory HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_flash.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="StdPeriphDriver" Csub="LCD" 			Cversion="1.1.0" condition="Device COMMON">
+      <description>LCD driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_lcd.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="StdPeriphDriver" Csub="PWM" 			Cversion="1.1.0" condition="Device COMMON">
+      <description>PWM driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_pwm.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="StdPeriphDriver" Csub="PWR" 			Cversion="1.1.0" condition="Device COMMON">
+      <description>Power controller (PWR) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_pwr.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="StdPeriphDriver" Csub="SPI0" 		Cversion="1.1.0" condition="Device COMMON">
+      <description>Serial peripheral interface (SPI0) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_spi0.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="StdPeriphDriver" Csub="SPI1" 		Cversion="1.1.0" condition="Device COMMON">
+      <description>Serial peripheral interface (SPI1) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_spi1.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="SYS" 			Cversion="1.1.0" condition="Device COMMON">
+      <description>System Info</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_sys.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="StdPeriphDriver" Csub="TIME0" 		Cversion="1.1.0" condition="Device COMMON">
+      <description>Timers (TIM) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_timer0.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="StdPeriphDriver" Csub="UART0" 		Cversion="1.1.0" condition="Device COMMON">
+      <description>Universal asynchronous receiver transmitter (UART0) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_uart0.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="StdPeriphDriver" Csub="UART1" 		Cversion="1.1.0" condition="Device COMMON">
+      <description>Universal asynchronous receiver transmitter (UART1) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_uart1.c"/>
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="StdPeriphDriver" Csub="UART2" 		Cversion="1.1.0" condition="Device COMMON">
+      <description>Universal asynchronous receiver transmitter (UART2) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_uart2.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="StdPeriphDriver" Csub="UART3"        Cversion="1.1.0" condition="Device COMMON">
+      <description>Universal asynchronous receiver transmitter (UART3) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_uart3.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="StdPeriphDriver" Csub="USBDevice"    Cversion="1.1.0" condition="Device COMMON">
+      <description>USB Peripheral controller (PCD) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_usbdev.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="StdPeriphDriver" Csub="USBHost" 		Cversion="1.1.0" condition="Device USBHOSTBASE">
+      <description>USB Peripheral controller (PCD) HAL driver</description>
+      <files>
+        <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_usbhostClass.c"/>
+      </files>
+    </component>
+	<component Cclass="Bluetooth" Cgroup="Common File" 		   				Cversion="1.1.0" condition="BLE Lib">
+      <description>CH57x Bluetooth Common files</description>
+	  <book	name="MDK/Keil/BluetoothLib/Documentation/CH57xBLEStack.pdf"   title="CH57xBLE Stack"/>
+      <files>
+		<file category="header" name="MDK/Keil/BluetoothLib/LIB/CH57xBLE_LIB.H"/>
+        <file category="library" condition="Startup ARM" name="MDK/Keil/BluetoothLib/LIB/CH57xBLE.lib"/>
+		<file category="source" name="MDK/Keil/BluetoothLib/HAL/MCU.c" attr="config" version="1.1.0" />
+		<file category="source" name="MDK/Keil/BluetoothLib/HAL/RTC.c" attr="config" version="1.1.0" />
+		<file category="source" name="MDK/Keil/BluetoothLib/HAL/SLEEP.c" attr="config" version="1.1.0" />
+		<file category="source" name="MDK/Keil/BluetoothLib/HAL/KEY.c" attr="config" version="1.1.0" />
+		<file category="source" name="MDK/Keil/BluetoothLib/HAL/LED.c" attr="config" version="1.1.0" />
+		<file category="header" name="MDK/Keil/BluetoothLib/HAL/include/RTC.h" attr="config" version="1.1.0" />
+		<file category="header" name="MDK/Keil/BluetoothLib/HAL/include/SLEEP.h" attr="config" version="1.1.0" />
+		<file category="header" name="MDK/Keil/BluetoothLib/HAL/include/KEY.h" attr="config" version="1.1.0" />
+		<file category="header" name="MDK/Keil/BluetoothLib/HAL/include/LED.h" attr="config" version="1.1.0" />
+		<file category="header" name="MDK/Keil/BluetoothLib/HAL/include/HAL.h" attr="config" version="1.1.0" />
+      </files>
+    </component>
+
+	<bundle Cbundle="CH579-EVT" Cclass="CH579-example" Cversion="1.0.0">
+      <description>CH579-EVT StdPeriphDriver example</description>
+	   <component Cgroup="StdPeriphDriver example" Csub="ADC" condition="Device COMMON">
+        <description>ADC example</description>
+        <files>
+		  <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_uart1.c"/>
+		  <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_gpio.c"/>
+		  <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_adc.c"/>
+          <file category="source" name="MDK/Templates/ADC/Main.c" attr="config" version="1.1.0"/>
+        </files>
+      </component>
+	  <component Cgroup="StdPeriphDriver example" Csub="FLASH" condition="Device COMMON">
+        <description>FLASH example</description>
+        <files>		 
+		  <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_uart1.c"/>
+		  <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_gpio.c"/>
+		  <file category="source" name="Drivers/CH57x_Driver/Src/CH57x_flash.c"/>
+          <file category="source" name="MDK/Templates/FLASH/Main.c" attr="config" version="1.1.0"/>
+        </files>
+      </component>
+	</bundle>
+	<bundle Cbundle="CH579-Bluetooth" Cclass="CH579-example" Cversion="1.0.0">
+      <description>CH579-Bluetooth example</description>
+	  <component Cgroup="Bluetooth example"  Csub="Broadcaster" condition="BLE Lib">
+        <description>Broadcaster example</description>
+        <files>
+		  <file category="header" name="MDK/Keil/BluetoothLib/Broadcaster/Profile/include/devinfoservice.h" attr="config" version="1.1.0"/>
+		  <file category="header" name="MDK/Keil/BluetoothLib/Broadcaster/Profile/include/hiddev.h" attr="config" version="1.1.0"/>
+		  <file category="header" name="MDK/Keil/BluetoothLib/Broadcaster/Profile/include/battservice.h" attr="config" version="1.1.0"/>
+		  <file category="source"  name="MDK/Keil/BluetoothLib/Broadcaster/Profile/battservice.c" attr="config" version="1.1.0"/>
+		  <file category="source"  name="MDK/Keil/BluetoothLib/Broadcaster/Profile/devinfoservice.c" attr="config" version="1.1.0"/>
+		  <file category="header" name="MDK/Keil/BluetoothLib/Broadcaster/APP/include/config.h" attr="config" version="1.1.0"/>
+		  <file category="header" name="MDK/Keil/BluetoothLib/Broadcaster/APP/include/broadcaster.h" attr="config" version="1.1.0"/>		 
+		 <file category="source"  name="MDK/Keil/BluetoothLib/Broadcaster/APP/broadcaster.c" attr="config" version="1.1.0"/>
+          <file category="source"  name="MDK/Keil/BluetoothLib/Broadcaster/APP/broadcaster_main.c" attr="config" version="1.1.0"/>
+        </files>
+      </component>
+	  <component Cgroup="Bluetooth example"  Csub="Central" condition="BLE Lib">
+        <description>Central example</description>
+        <files>
+		  <file category="include" name="MDK/Keil/BluetoothLib/Central/Profile/include/"/>
+		  <file category="include" name="MDK/Keil/BluetoothLib/Central/APP/include/"/>
+		  <file category="source"  name="MDK/Keil/BluetoothLib/Central/APP/central.c" attr="config" version="1.1.0"/>
+          <file category="source"  name="MDK/Keil/BluetoothLib/Central/APP/central_main.c" attr="config" version="1.1.0"/>
+        </files>
+      </component>
+	</bundle>
+  </components>  
+  
+  	<examples>
+		<example name="StdPeriphDriver examples" doc="Abstract.txt" folder="MDK/Templates">
+			<description>All StdPeriphDriver example</description>
+			<board name="CH579-EVT" vendor="Keil"/>
+			<project>
+				<environment name="uv" load="ADC/CH57x.uvproj"/>
+			</project>
+			<attributes>
+				<category>Getting Started</category>
+				<category>CMSIS-RTX</category>
+			</attributes>
+		</example>
+		<example name="Bluetooth examples" doc="Abstract.txt" folder="MDK/Keil/BluetoothLib">
+			<description>All Bluetooth example</description>
+			<board name="CH579-EVT" vendor="Keil"/>
+			<project>
+				<environment name="uv" load="Broadcaster/Project/BLE.uvproj"/>
+			</project>
+			<attributes>
+				<category>Getting Started</category>
+				<category>CMSIS-RTX</category>
+			</attributes>
+        </example>
+		<example name="NetWork examples" doc="Abstract.txt" folder="MDK/Keil/NetWork">
+			<description>All NetWork example</description>
+			<board name="CH579-EVT" vendor="Keil"/>
+			<project>
+				<environment name="uv" load="DNS/DNS.uvproj"/>
+			</project>
+			<attributes>
+				<category>Getting Started</category>
+				<category>CMSIS-RTX</category>
+			</attributes>
+        </example>
+	</examples>
+
+  <!-- optional taxonomy section for defining new component Class and Group names -->
+  <!--
+  <taxonomy>
+  </taxonomy>
+  -->
+  
+</package>

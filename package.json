@@ -1,0 +1,13 @@
+{
+  "name": "framework-ch579x",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [
+    "framework",
+    "ch579x"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ps2chiper/framework-ch579x.git"
+  }
+}
